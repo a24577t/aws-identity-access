@@ -1,0 +1,1 @@
+# STUB — docs/architecture/: authoritative domain architecture. Header/metadata scheme and the domain decision-register form are decided by T08; documents here do not share equal authority with guides/ or generated/ (T04-d1).

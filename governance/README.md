@@ -1,0 +1,3 @@
+# STUB — governance/: declarations that are not routine desired-access grants (strictest applicable owner set, T04-d1).
+# ownership/ — organizational-principal registry; T06 decides its form and keys (not stubbed here).
+# Absent for slice A (T04-d6): exceptions/ (no USER-principal or IAM exceptions in the slice) and runtime-mutations/ (the governance/runtime-mutations/<contract>.yml convention is inherited from OD-16; this slice contains no runtime-mutation contract). No placeholder directories; the selected-slice validation profile rejects files under absent paths with a stable out-of-slice code (T14) — a POC profile rule, not a domain prohibition.
