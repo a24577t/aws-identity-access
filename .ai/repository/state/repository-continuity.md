@@ -20,18 +20,17 @@
 
 - The open child tickets of map #1 (sub-issues with native blocked-by dependencies):
   https://github.com/a24577t/aws-identity-access/issues/1
-- Frontier after T03: T18 #5 is an AFK `research` ticket (the base skill's research
-  exception applies); the first HITL ticket is T04 #6.
+- Frontier after T18: T04 #6 (prototype, HITL) is first in map order; T05 #7, T06 #8, T07 #9,
+  T15 #10, T09 #12, T08 #13, and T19 #14 are also unblocked.
 
 ## Recommended Next Activity
 
 1. Run Session Bootstrap.
 2. Consume this artifact.
 3. Load map #1.
-4. Fire T18 #5 (https://github.com/a24577t/aws-identity-access/issues/5) as a `research`
-   subagent under `wayfinder-repo-owner`, then claim and work T04 #6
-   (https://github.com/a24577t/aws-identity-access/issues/6) under `wayfinder-repo-owner`,
-   `prototype`, and `grill-with-docs`.
+4. Claim and work T04 #6 (https://github.com/a24577t/aws-identity-access/issues/6) under
+   `wayfinder-repo-owner`, `prototype`, and `grill-with-docs`; the T18 research artifact
+   (`docs/research/brownfield-inventory.md`) is its brownfield evidence input.
 5. One HITL ticket for the session.
 
 ## Notes
