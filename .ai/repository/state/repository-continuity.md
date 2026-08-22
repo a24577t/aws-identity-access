@@ -21,14 +21,14 @@
 
 - The open child tickets of map #1 (sub-issues with native blocked-by dependencies):
   https://github.com/a24577t/aws-identity-access/issues/1
-- Frontier after T04: T05 #7 (grilling, HITL) is first in map order; T06 #8, T07 #9, T15 #10, T09 #12, T08 #13, and T19 #14 are also unblocked.
+- Frontier after T05: T06 #8 (grilling, HITL) is first in map order; T07 #9, T15 #10, T09 #12, T08 #13, T19 #14, and T10 #15 are also unblocked.
 
 ## Recommended Next Activity
 
 1. Run Session Bootstrap.
 2. Consume this artifact.
 3. Load map #1.
-4. Claim and work T05 #7 (https://github.com/a24577t/aws-identity-access/issues/7) under `wayfinder-repo-owner` and `grill-with-docs`.
+4. Claim and work T06 #8 (https://github.com/a24577t/aws-identity-access/issues/8) under `wayfinder-repo-owner` and `grill-with-docs`.
 5. One HITL ticket for the session.
 
 ## Notes
