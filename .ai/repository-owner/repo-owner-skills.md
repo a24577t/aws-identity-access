@@ -30,4 +30,5 @@ authority model without touching them.
 
 | Skill | Base | Position | Stops at |
 |---|---|---|---|
+| [`wayfinder-repo-owner`](../../.claude/skills/wayfinder-repo-owner/SKILL.md) | `wayfinder` | S1–S3 (document-grounded architecture discovery) | S4 Architecture Grill |
 | [`to-spec-repo-owner`](../../.claude/skills/to-spec-repo-owner/SKILL.md) | `to-spec` | S5 (consolidation after an owner-approved Architecture Grill verdict) | ⟦G-Accept⟧ |

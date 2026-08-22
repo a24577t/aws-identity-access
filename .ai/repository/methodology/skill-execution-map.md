@@ -40,9 +40,9 @@ condition just met.
 
 | Step | Invoke | Specialization | Complete when | Normal next | Conditional — gate |
 |---|---|---|---|---|---|
-| S1 | `wayfinder` (chart) | Architecture-bearing efforts exit via S4 | Map + tickets created | S2 | — |
-| S2 | `grilling`/`research`/`prototype` per ticket (`domain-modeling` inline) | Research branches disposed on ticket close | Ticket resolved, closed, indexed | S2 (next ticket) | Frontier empty → S3 |
-| S3 | `wayfinder` (close map) | — | Way clear | S4 | No architecture in effort → S5 |
+| S1 | `wayfinder-repo-owner` (chart) | Architecture-bearing efforts use `grill-with-docs` when authoritative documents govern a classification or proposal; exit via S4 | Map + tickets created | S2 | — |
+| S2 | `grilling`/`research`/`prototype` per ticket (`domain-modeling` inline) | Apply `wayfinder-repo-owner` document-grounded rule; research branches disposed on ticket close | Ticket resolved, closed, indexed | S2 (next ticket) | Frontier empty → S3 |
+| S3 | `wayfinder-repo-owner` (close map) | Document-grounded results recorded in their tickets | Way clear | S4 | No architecture in effort → S5 |
 | S4 | `grilling` as **Architecture Grill** | Frozen proposal; fixed invariants out of scope; per-question classifications; verdict | Verdict delivered | ⟦G-Verdict⟧ | — |
 | — | **⟦G-Verdict⟧** owner approves the verdict | | Approved | S5 | FAIL / withheld → S2 |
 | S5 | `to-spec-repo-owner` + `domain-modeling` (ADR texts) | Consolidation mode; house format; no publication or authorization | Review-ready texts presented | ⟦G-Accept⟧ | — |
@@ -78,7 +78,7 @@ interrupted skill.
 ## Dependency diagram
 
 ```
-⟦G-Session⟧ → wayfinder → (grilling/research/prototype per ticket)
+⟦G-Session⟧ → wayfinder-repo-owner → (grilling/grill-with-docs/research/prototype per ticket)
   → grilling [Architecture Grill] → ⟦G-Verdict⟧
   → to-spec-repo-owner + domain-modeling → ⟦G-Accept⟧
   → to-tickets → implement → codebase-design → tdd
@@ -91,8 +91,8 @@ on-ramps: triage → implement · diagnosing-bugs → tdd
 
 ## Relationship note
 
-`to-spec-repo-owner` is a repository-owned specialization of the upstream Matt
-Pocock `to-spec` skill. The upstream skill remains unchanged. Future upstream
-updates must be reviewed against this specialization before repository behavior
-is changed. The same rule governs every `*-repo-owner` skill
+`wayfinder-repo-owner` and `to-spec-repo-owner` are repository-owned
+specializations of the upstream Matt Pocock skills. The upstream skills remain
+unchanged. Future upstream updates must be reviewed against each applicable
+specialization before repository behavior is changed. The same rule governs every `*-repo-owner` skill
 ([repo-owner-skills.md](../../repository-owner/repo-owner-skills.md)).
