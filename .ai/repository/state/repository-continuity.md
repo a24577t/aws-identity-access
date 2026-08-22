@@ -20,20 +20,23 @@
 
 - The open child tickets of map #1 (sub-issues with native blocked-by dependencies):
   https://github.com/a24577t/aws-identity-access/issues/1
-- Slice-first rule: when T03 resolves, revalidate the whole map against the selected slice
-  (close beyond-slice tickets, graduate sharpened fog, re-wire T14's blockers) — see the map's
-  Notes.
+- Frontier after T03: T18 #5 is an AFK `research` ticket (the base skill's research
+  exception applies); the first HITL ticket is T04 #6.
 
 ## Recommended Next Activity
 
 1. Run Session Bootstrap.
 2. Consume this artifact.
 3. Load map #1.
-4. Claim and work T03 #4 (https://github.com/a24577t/aws-identity-access/issues/4) under
-   `wayfinder-repo-owner` and `grill-with-docs`.
+4. Fire T18 #5 (https://github.com/a24577t/aws-identity-access/issues/5) as a `research`
+   subagent under `wayfinder-repo-owner`, then claim and work T04 #6
+   (https://github.com/a24577t/aws-identity-access/issues/6) under `wayfinder-repo-owner`,
+   `prototype`, and `grill-with-docs`.
 5. One HITL ticket for the session.
 
 ## Notes
 
 - Tracker writes require the keyring `gh` login rather than an injected `GITHUB_TOKEN` /
   `GH_TOKEN` (remove them from the command environment first).
+- No AWS mutation is authorized during Wayfinder; the T02 (#3) deployment mode is a target,
+  not an authorization.
