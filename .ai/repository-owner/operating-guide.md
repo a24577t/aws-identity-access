@@ -16,6 +16,9 @@ this repository, to the repository owner.
    authorize progression but never become skills.
 2. Repository authority changes occur only at Repository Gates. Skills prepare
    repository changes; the owner authorizes them.
+3. For HITL decision work, present all currently knowable questions as one numbered
+   batch; use additional rounds only for materially dependent, contradictory, or newly
+   surfaced decisions.
 
 ## The owner at each Repository Gate
 
