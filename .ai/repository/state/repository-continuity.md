@@ -11,10 +11,12 @@
   [wayfinder-repo-owner](../../../.claude/skills/wayfinder-repo-owner/SKILL.md), and the
   HITL batch-question directive (governing invariant 3 in the
   [repository-owner operating guide](../../repository-owner/operating-guide.md)).
-- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md); the T15
+- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md) — the T16
   record is
+  [`docs/wayfinding/map-1/11-lab-account-topology-and-fixtures.md`](../../../docs/wayfinding/map-1/11-lab-account-topology-and-fixtures.md)
+  (commit `d357db7`); T15 is
   [`docs/wayfinding/map-1/10-lab-environment-test-and-deployment-contract.md`](../../../docs/wayfinding/map-1/10-lab-environment-test-and-deployment-contract.md)
-  (commit `62b76c4`); the T07 record is
+  (commit `62b76c4`); T07 is
   [`docs/wayfinding/map-1/09-standing-administrator-access.md`](../../../docs/wayfinding/map-1/09-standing-administrator-access.md)
   (commit `8530c46`).
 
@@ -29,20 +31,22 @@
 
 - The open child tickets of map #1 (sub-issues with native blocked-by dependencies):
   https://github.com/a24577t/aws-identity-access/issues/1
-- Frontier after T15: T16 #11 (grilling, HITL) is first in map order and is unclaimed; T09 #12,
-  T08 #13, T19 #14, T10 #15, T21 #20, and T22 #21 are also unblocked. T20 #22 and T14 #19 remain
-  blocked.
-- T16 must perform read-only discovery against the T15 target topology (record decision 2) and
-  stop with remediation if any prerequisite is absent; no AWS mutation is authorized by T15.
+- Frontier after T16: T09 #12 (grilling, HITL) is first in map order and is unclaimed; T08 #13,
+  T19 #14, T10 #15, T21 #20, and T22 #21 are also unblocked. T20 #22 (four open blockers) and
+  T14 #19 (five) remain blocked.
+- The lab has no AWS Organization or Identity Center instance (T16 read-only discovery,
+  2026-08-23). All lab provisioning is separately authorized S6 remediation per T16 decision 11
+  (Stages 0–6); nothing is authorized by the map, and no fallback to T15 option 2B/2C is
+  inferred.
 - Result records for the closed tickets T01–T06 and T11–T13 have not been created yet (a
-  separately authorized backfill); T07 and T15 have committed records.
+  separately authorized backfill); T07, T15, and T16 have committed records.
 
 ## Recommended Next Activity
 
 1. Run Session Bootstrap.
 2. Consume this artifact.
 3. Load map #1.
-4. Claim and work T16 #11 (https://github.com/a24577t/aws-identity-access/issues/11) under
+4. Claim and work T09 #12 (https://github.com/a24577t/aws-identity-access/issues/12) under
    `wayfinder-repo-owner` and `grill-with-docs`, presenting all knowable questions as one batch
    per the operating-guide directive; record its result under `docs/wayfinding/map-1/`.
 5. One HITL ticket for the session.
@@ -51,7 +55,9 @@
 
 - Tracker writes use only the active `a24577t` keyring `gh` login; remove `GITHUB_TOKEN` and
   `GH_TOKEN` from every `gh` command's environment and never inspect token values.
-- No AWS mutation is authorized during Wayfinder; the T02 (#3) deployment mode and the T15 (#10)
-  contract are targets, not authorizations. Nothing in GitHub (protections, environments,
-  secrets, workflows) has been configured by the map; T06's mechanisms and T15's minimum
-  control set are proposals for S5/S6 under separate authorization.
+- Read-only AWS discovery, when separately authorized, uses the established named lab profile
+  with every identifier masked before output; no AWS mutation is authorized during Wayfinder.
+  The T02 (#3) deployment mode, the T15 (#10) contract, and the T16 (#11) topology are targets,
+  not authorizations. Nothing in GitHub (protections, environments, secrets, workflows) has
+  been configured by the map; T06's mechanisms and T15's minimum control set are proposals for
+  S5/S6 under separate authorization.
