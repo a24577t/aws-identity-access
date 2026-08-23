@@ -11,8 +11,10 @@
   [wayfinder-repo-owner](../../../.claude/skills/wayfinder-repo-owner/SKILL.md), and the
   HITL batch-question directive (governing invariant 3 in the
   [repository-owner operating guide](../../repository-owner/operating-guide.md)).
-- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md) — the T09
+- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md) — the T08
   record is
+  [`docs/wayfinding/map-1/13-domain-decision-register-form.md`](../../../docs/wayfinding/map-1/13-domain-decision-register-form.md)
+  (commit `c970244`); T09 is
   [`docs/wayfinding/map-1/12-organization-inventory-transport-and-snapshot-contract.md`](../../../docs/wayfinding/map-1/12-organization-inventory-transport-and-snapshot-contract.md)
   (commit `16522a4`); T16 is
   [`docs/wayfinding/map-1/11-lab-account-topology-and-fixtures.md`](../../../docs/wayfinding/map-1/11-lab-account-topology-and-fixtures.md)
@@ -33,28 +35,30 @@
 
 - The open child tickets of map #1 (sub-issues with native blocked-by dependencies):
   https://github.com/a24577t/aws-identity-access/issues/1
-- Frontier after T09: T08 #13 (grilling, HITL) is first in map order and is unclaimed; T19 #14,
-  T10 #15, T21 #20, and T22 #21 are also unblocked. T20 #22 (three open blockers) and T14 #19
-  (four) remain blocked.
-- T08 #13 must close before S5 consolidation (map note); it blocks no other ticket.
+- Frontier after T08: T19 #14 is first in map order and is unclaimed; T10 #15, T21 #20,
+  T22 #21, and T23 #23 are also unblocked (T23 released by the T08 #13 close). T20 #22 (three
+  open blockers) and T14 #19 (four) remain blocked.
+- T23 #23 (normative-document header and slice-A documentation set, graduated from the map fog
+  by T08 decision 15) must close before S5 consolidation; it blocks no other ticket.
+- Result-record backfill for T01–T06 and T11–T13 is a T08 decision 13 prerequisite for S5:
+  separately authorized by Eric before it may begin; **not begun** — no backfill file exists.
 - The lab has no AWS Organization or Identity Center instance (T16 discovery, 2026-08-23). All
   lab provisioning is separately authorized S6 remediation per T16 decision 11 (Stages 0–6); the
   binding snapshot contract (T09) is exercised only at Stage 6.1/6.3 under separate
   authorization; no AWS call, S3 write, or evidence creation is authorized by the map.
 - Upstream proposals carried by Eric (not yet carried): document 09 (T02), document 05 (T02),
-  document 02 (T05), document 07 (T04), documents 01/11 (T07), OD-21 (T09). `aws_ami` is never
-  edited by this repository.
-- Result records for the closed tickets T01–T06 and T11–T13 have not been created yet (a
-  separately authorized backfill); T07, T15, T16, and T09 have committed records.
+  document 02 (T05), document 07 (T04), documents 01/11 (T07), OD-21 (T09), RD-09 clarification
+  (T08). `aws_ami` is never edited by this repository. T08 decision 8 requires an informative
+  `docs/architecture/upstream-proposals.md` index no later than the S5 acceptance branch.
 
 ## Recommended Next Activity
 
 1. Run Session Bootstrap.
 2. Consume this artifact.
 3. Load map #1.
-4. Claim and work T08 #13 (https://github.com/a24577t/aws-identity-access/issues/13) under
-   `wayfinder-repo-owner` and `grill-with-docs`, presenting all knowable questions as one batch
-   per the operating-guide directive; record its result under `docs/wayfinding/map-1/`.
+4. Claim and work T19 #14 (https://github.com/a24577t/aws-identity-access/issues/14) under
+   `wayfinder-repo-owner`, applying the document-grounded rule as its claims require and the
+   HITL batch directive; record its result under `docs/wayfinding/map-1/`.
 5. One HITL ticket for the session.
 
 ## Notes
