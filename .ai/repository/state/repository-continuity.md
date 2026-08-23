@@ -1,6 +1,6 @@
 # Repository Continuity Artifact
 
-- **Created:** 2026-08-22
+- **Created:** 2026-08-23
 
 ## Resume Context
 
@@ -9,6 +9,10 @@
   https://github.com/a24577t/aws-identity-access/issues/1
 - Skill governance: [Skill Execution Map](../methodology/skill-execution-map.md) and
   [wayfinder-repo-owner](../../../.claude/skills/wayfinder-repo-owner/SKILL.md).
+- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md); the T07
+  record is
+  [`docs/wayfinding/map-1/09-standing-administrator-access.md`](../../../docs/wayfinding/map-1/09-standing-administrator-access.md)
+  (commit `8530c46`).
 
 ## Work Not Yet Committed
 
@@ -21,14 +25,18 @@
 
 - The open child tickets of map #1 (sub-issues with native blocked-by dependencies):
   https://github.com/a24577t/aws-identity-access/issues/1
-- Frontier after T06: T07 #9 (grilling, HITL) is first in map order; T15 #10, T09 #12, T08 #13, T19 #14, and T10 #15 are also unblocked.
+- Frontier after T07: T15 #10 (grilling, HITL) is first in map order; T09 #12, T08 #13,
+  T19 #14, and T10 #15 are also unblocked.
+- Result records for the closed tickets T01–T06 and T11–T13 have not been created yet (a
+  separately authorized backfill); only T07 has a committed record so far.
 
 ## Recommended Next Activity
 
 1. Run Session Bootstrap.
 2. Consume this artifact.
 3. Load map #1.
-4. Claim and work T07 #9 (https://github.com/a24577t/aws-identity-access/issues/9) under `wayfinder-repo-owner` and `grill-with-docs`.
+4. Claim and work T15 #10 (https://github.com/a24577t/aws-identity-access/issues/10) under
+   `wayfinder-repo-owner` and `grill-with-docs`; record its result under `docs/wayfinding/map-1/`.
 5. One HITL ticket for the session.
 
 ## Notes
