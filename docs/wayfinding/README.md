@@ -15,3 +15,4 @@ Wayfinder ticket (`NN` = issue number, zero-padded).
 
 - [`map-1/09-standing-administrator-access.md`](map-1/09-standing-administrator-access.md) — T07 #9, standing administrator access (three separated decisions).
 - [`map-1/10-lab-environment-test-and-deployment-contract.md`](map-1/10-lab-environment-test-and-deployment-contract.md) — T15 #10, lab-environment test and deployment contract (decisions 1–16).
+- [`map-1/11-lab-account-topology-and-fixtures.md`](map-1/11-lab-account-topology-and-fixtures.md) — T16 #11, lab account topology and fixtures (decisions 1–16; stop with remediation; staged S6 remediation).
