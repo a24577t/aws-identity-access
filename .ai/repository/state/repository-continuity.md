@@ -1,6 +1,6 @@
 # Repository Continuity Artifact
 
-- **Created:** 2026-08-23
+- **Created:** 2026-08-24
 
 ## Resume Context
 
@@ -11,8 +11,10 @@
   [wayfinder-repo-owner](../../../.claude/skills/wayfinder-repo-owner/SKILL.md), and the
   HITL batch-question directive (governing invariant 3 in the
   [repository-owner operating guide](../../repository-owner/operating-guide.md)).
-- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md) — the T21
+- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md) — the T22
   record is
+  [`docs/wayfinding/map-1/21-manual-prerequisites-as-governed-configuration-and-evidence.md`](../../../docs/wayfinding/map-1/21-manual-prerequisites-as-governed-configuration-and-evidence.md)
+  (commit `6f2d84f030691e34ea6c57994bf2007dfd7007e9`); T21 is
   [`docs/wayfinding/map-1/20-permission-set-policy-representation-for-slice-a-aws-managed-attachment-and-embedded-inline-policy.md`](../../../docs/wayfinding/map-1/20-permission-set-policy-representation-for-slice-a-aws-managed-attachment-and-embedded-inline-policy.md)
   (commit `6129808`); T10 is
   [`docs/wayfinding/map-1/15-group-and-user-assignment-identity-and-filename-rules.md`](../../../docs/wayfinding/map-1/15-group-and-user-assignment-identity-and-filename-rules.md)
@@ -42,11 +44,15 @@
 
 - The open child tickets of map #1 (sub-issues with native blocked-by dependencies):
   https://github.com/a24577t/aws-identity-access/issues/1
-- Frontier after T21: T22 #21 is first in map order and is unclaimed; T23 #23 is also
-  unblocked. T20 #22 (one open blocker: #21) and T14 #19 (two: #21, #22) remain blocked;
-  **T14 #19 remains scheduled after T22 #21, T23 #23, and T20 #22 under the current map
-  order.**
+- Frontier after T22: **T23 #23 is first in map order and is unclaimed; T20 #22 is now
+  unblocked (zero open blockers)**; T14 #19 remains blocked by #22 only; **T14 #19 remains
+  scheduled after T23 #23 and T20 #22 under the current map order.**
 - T23 #23 must close before S5 consolidation; it blocks no other ticket.
+- No committed `instance.yml` exists: the T22 field set and verification-block structure are
+  proposals; the file lands at S6 under the accepted layout (T22 record, authorization scope).
+  The first Prerequisite Verification Record and binding snapshot exist only after the
+  separately authorized T16 decision-11 Stage 6.1/6.3 sequence; no S3 write, AWS call, or
+  evidence creation is authorized by the map.
 - The T21 CV-07 result is a **split disposition**: documentary PASS at Terraform `1.15.7` /
   `hashicorp/aws 6.53.0` plus empirical Terraform-core plan-class PASS; authoring-host
   AWS-provider execution NOT RUN/BLOCKED (loopback TLS interception); **lab-CI execution
@@ -65,16 +71,17 @@
   call, S3 write, or evidence creation is authorized by the map.
 - Upstream proposals carried by Eric (not yet carried): document 09 (T02), document 05 (T02),
   document 02 (T05), document 07 (T04, extended by T10), documents 01/11 (T07), OD-21 (T09),
-  RD-09 clarification (T08). None added by T21; OD-09 and OD-12 remain open platform-wide.
-  `aws_ami` is never edited by this repository. T08 decision 8 requires an informative
-  `docs/architecture/upstream-proposals.md` index no later than the S5 acceptance branch.
+  RD-09 clarification (T08), **OD-08 (T22)**. None added by T21; OD-09 and OD-12 remain open
+  platform-wide. `aws_ami` is never edited by this repository. T08 decision 8 requires an
+  informative `docs/architecture/upstream-proposals.md` index no later than the S5 acceptance
+  branch.
 
 ## Recommended Next Activity
 
 1. Run Session Bootstrap.
 2. Consume this artifact.
 3. Load map #1.
-4. Claim and work T22 #21 (https://github.com/a24577t/aws-identity-access/issues/21) under
+4. Claim and work T23 #23 (https://github.com/a24577t/aws-identity-access/issues/23) under
    `wayfinder-repo-owner`, applying the document-grounded rule as its claims require and the
    HITL batch directive; record its result under `docs/wayfinding/map-1/`.
 5. One HITL ticket for the session.
@@ -87,7 +94,7 @@
   with every identifier masked before output; no AWS mutation is authorized during Wayfinder.
   The T02 (#3) deployment mode, the T15 (#10) contract, the T16 (#11) topology, the T09 (#12)
   snapshot contract, the T19 (#14) adoption/migration strategy, the T10 (#15) assignment
-  rules, and the T21 (#20) permission-set representation are targets, not authorizations.
-  Nothing in GitHub (protections, environments, secrets, workflows) has been configured by
-  the map; T06's mechanisms and T15's minimum control set are proposals for S5/S6 under
-  separate authorization.
+  rules, the T21 (#20) permission-set representation, and the T22 (#21) manual-prerequisite
+  model are targets, not authorizations. Nothing in GitHub (protections, environments,
+  secrets, workflows) has been configured by the map; T06's mechanisms and T15's minimum
+  control set are proposals for S5/S6 under separate authorization.
