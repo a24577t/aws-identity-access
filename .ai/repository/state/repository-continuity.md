@@ -1,18 +1,26 @@
 # Repository Continuity Artifact
 
-- **Created:** 2026-08-24
+- **Created:** 2026-08-26
 
 ## Resume Context
 
 - Status Artifact: [STATUS.md](STATUS.md).
-- Wayfinder map #1 — in-flight position: Skill Step **S2** (working the map):
+- Wayfinder map #1 — in-flight position: Skill Step **S2 complete** — every child ticket of
+  the map is closed and the frontier is **empty**. The next activity is Skill Step **S3
+  (close map)** under `wayfinder-repo-owner`; **S4** then runs the Architecture Grill and
+  produces a verdict; **⟦G-Verdict⟧** is the subsequent owner-approval gate — only an
+  owner-approved verdict proceeds to S5 (`to-spec-repo-owner`), and a withheld or failed
+  verdict returns to discovery/remediation as the
+  [Skill Execution Map](../methodology/skill-execution-map.md) specifies:
   https://github.com/a24577t/aws-identity-access/issues/1
 - Skill governance: [Skill Execution Map](../methodology/skill-execution-map.md),
   [wayfinder-repo-owner](../../../.claude/skills/wayfinder-repo-owner/SKILL.md), and the
   HITL batch-question directive (governing invariant 3 in the
   [repository-owner operating guide](../../repository-owner/operating-guide.md)).
-- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md) — the T20
-  record is
+- Wayfinder result records: [`docs/wayfinding/`](../../../docs/wayfinding/README.md) — the
+  T14 record is
+  [`docs/wayfinding/map-1/19-validation-contract-for-the-selected-slice.md`](../../../docs/wayfinding/map-1/19-validation-contract-for-the-selected-slice.md)
+  (commit `a0ee5a9435e639e5c331017506af8d9db230c3c2`); T20 is
   [`docs/wayfinding/map-1/22-ci-plan-contract-and-pr-classes-for-slice-a.md`](../../../docs/wayfinding/map-1/22-ci-plan-contract-and-pr-classes-for-slice-a.md)
   (commit `87dedbce41beb0213579d2c4fc62fe9556850f91`); T23 is
   [`docs/wayfinding/map-1/23-normative-document-header-and-slice-a-documentation-set.md`](../../../docs/wayfinding/map-1/23-normative-document-header-and-slice-a-documentation-set.md)
@@ -38,24 +46,33 @@
 
 ## Work Not Yet Committed
 
-- None in the working tree. The in-flight work is the map itself, which lives in the tracker
-  (pointers above); this artifact only bridges the S2 position that STATUS does not yet
-  represent (STATUS reconciles at the next Repository Gate). The T04 prototype lives on the
-  throwaway branch `prototype/t04-layout` (context pointer on #6), never on `main`; its
-  assignment stubs are superseded by the T10 record specimens.
+- None in the working tree. The in-flight work is the map itself, now fully worked
+  (every child ticket closed; pointers above); this artifact only bridges the position —
+  ready for S3 (close map) — that STATUS does not yet represent (STATUS reconciles at the
+  next Repository Gate). The T04 prototype lives on the throwaway branch
+  `prototype/t04-layout` (context pointer on #6), never on `main`; its assignment stubs
+  are superseded by the T10 record specimens.
 
 ## Outstanding Decisions
 
-- The open child tickets of map #1 (sub-issues with native blocked-by dependencies):
-  https://github.com/a24577t/aws-identity-access/issues/1
-- Frontier after T20: **T14 #19 is the final open child of map #1, unblocked (zero open
-  blockers), and unclaimed.** After T14 resolves, the frontier is empty and the map proceeds
-  to S3 (close map) per the Skill Execution Map.
-- The T20 CI plan contract and PR classes are targets, not authorizations: no workflow,
-  environment, ruleset, CODEOWNERS, classifier, generator, or manifest exists or is
-  configured; the contract governs implementation/change PRs after ⟦G-Verdict⟧ /
-  ⟦G-Accept⟧ and never retroactively classifies the Wayfinder record and continuity
-  commits. **Three mandatory open conditions carried explicitly:**
+- **Next lifecycle step:** S3 (close map) under `wayfinder-repo-owner` — closing T14
+  emptied the child-ticket frontier but did **not** execute S3. S3 closes map #1; S4 runs
+  the Architecture Grill and produces a verdict; ⟦G-Verdict⟧ is the subsequent
+  owner-approval gate; only an owner-approved verdict proceeds to S5
+  (`to-spec-repo-owner`); a withheld or failed verdict returns to discovery/remediation as
+  the Skill Execution Map specifies. Each is a separate later step. The map's fog is empty
+  (the final patch was resolved by T14 decision 8 and removed from the map body).
+- The T14 validation contract (severity vocabulary; 79-code catalogue — 78 active, 1
+  dormant `ADO-MANIFEST`, 0 reserved; stage model; fixture-tree contract; finding-record
+  contract) is a target, not an authorization: no validator, schema, fixture, generator,
+  CI, or workflow implementation exists or is authorized; implementation is S6 work after
+  ⟦G-Verdict⟧ / ⟦G-Accept⟧. The two ADM action catalogs (wildcard-expansion catalog;
+  privileged-mutation action set) have **no selected source or bytes**: the S5 plan must
+  select source, transformation, committed representation, version, digest, update
+  process, and review class before implementation; detector rules 2/4 are
+  contract-complete but not executable until then; the S5 plan must also make the
+  validation-environment pins explicit.
+- **Three mandatory open conditions carried explicitly (unchanged by T14):**
   1. **Provider-execution gate:** authoring-host execution of the pinned AWS provider
      remains NOT RUN/BLOCKED; lab-CI execution remains unverified until executed in the
      designated lab-CI boundary; documentary CV-07 evidence is not S6 execution readiness.
@@ -67,7 +84,13 @@
      `state-removal-only` class cannot activate until that verification passes.
   3. **Import-redaction gate:** `change.importing.id` rendering, sensitivity, and redaction
      remain a separate OPEN verification — no T19 rehearsal, and no activation of the
-     dormant rehearsal PR classes, until it passes with empirical evidence.
+     dormant rehearsal PR classes (or the dormant `ADO-MANIFEST` code), until it passes
+     with empirical evidence.
+- The T20 CI plan contract and PR classes remain targets, not authorizations: no workflow,
+  environment, ruleset, CODEOWNERS, classifier, generator, or manifest exists or is
+  configured; the contract governs implementation/change PRs after ⟦G-Verdict⟧ /
+  ⟦G-Accept⟧ and never retroactively classifies the Wayfinder record and continuity
+  commits.
 - The T23 documentation-set and header decisions are targets, not authorizations: no
   document of the set exists — the two normative documents, the five guides, and the
   informative upstream-proposals index are S5 activities on the acceptance branch under the
@@ -75,47 +98,50 @@
   `docs/architecture/`, `docs/guides/`, `docs/adr/`, or `docs/generated/` is created before
   then.
 - No committed `instance.yml` exists: the T22 field set and verification-block structure are
-  proposals; the file lands at S6 under the accepted layout (T22 record, authorization scope).
-  The first Prerequisite Verification Record and binding snapshot exist only after the
-  separately authorized T16 decision-11 Stage 6.1/6.3 sequence; no S3 write, AWS call, or
-  evidence creation is authorized by the map.
+  proposals; the file lands at S6 under the accepted layout (T22 record, authorization
+  scope). The first Prerequisite Verification Record and binding snapshot exist only after
+  the separately authorized T16 decision-11 Stage 6.1/6.3 sequence; no S3 write, AWS call,
+  or evidence creation is authorized by the map.
 - Result-record backfill for T01–T06 and T11–T13 is a T08 decision 13 prerequisite for S5:
-  separately authorized by Eric before it may begin; **not begun** — no backfill file exists.
+  separately authorized by Eric before it may begin; **not begun** — no backfill file
+  exists.
 - The T19 import rehearsal, its seeds, drift probe, restoration, rollback/re-import
   transitions, and cleanup are all post-POC-acceptance activities, each requiring separate
-  Eric authorization (T19 decisions 2 and 16); nothing is authorized by the map. The lab has
-  no AWS Organization or Identity Center instance (T16 discovery, 2026-08-23); all lab
+  Eric authorization (T19 decisions 2 and 16); nothing is authorized by the map. The lab
+  has no AWS Organization or Identity Center instance (T16 discovery, 2026-08-23); all lab
   provisioning is separately authorized S6 remediation per T16 decision 11; the T09 binding
   snapshot contract is exercised only at Stage 6.1/6.3 under separate authorization; no AWS
   call, S3 write, or evidence creation is authorized by the map.
-- Upstream proposals carried by Eric (not yet carried): document 09 (T02), document 05 (T02),
-  document 02 (T05), document 07 (T04, extended by T10), documents 01/11 (T07), OD-21 (T09),
-  RD-09 clarification (T08), OD-08 (T22). None added by T21, T23, or T20; OD-09 and OD-12
-  remain open platform-wide. `aws_ami` is never edited by this repository. T08 decision 8
-  requires an informative `docs/architecture/upstream-proposals.md` index no later than the
-  S5 acceptance branch.
+- Upstream proposals carried by Eric (not yet carried): document 09 (T02), document 05
+  (T02), document 02 (T05), document 07 (T04, extended by T10), documents 01/11 (T07),
+  OD-21 (T09), RD-09 clarification (T08), OD-08 (T22). None added by T21, T23, T20, or
+  T14; OD-09 and OD-12 remain open platform-wide. `aws_ami` is never edited by this
+  repository. T08 decision 8 requires an informative
+  `docs/architecture/upstream-proposals.md` index no later than the S5 acceptance branch.
 
 ## Recommended Next Activity
 
 1. Run Session Bootstrap.
 2. Consume this artifact.
-3. Load map #1.
-4. Claim and work T14 #19 (https://github.com/a24577t/aws-identity-access/issues/19) under
-   `wayfinder-repo-owner`, applying the document-grounded rule as its claims require and the
-   HITL batch directive; record its result under `docs/wayfinding/map-1/`. T14 is the final
-   open child: its closure empties the frontier and routes the map to S3.
-5. One HITL ticket for the session.
+3. Load map #1 (verify: zero open children; the T14 Decisions-so-far line present; the
+   schema-versioning fog entry removed; no other change).
+4. Run **S3 (close map)** under `wayfinder-repo-owner`: verify every document-grounded
+   result is recorded in its ticket, the way to the destination is clear, and route to S4
+   (Architecture Grill). S3 resolves no HITL ticket and claims nothing.
+5. Do not begin S5 consolidation before the separately authorized T01–T06/T11–T13
+   backfill (T08 decision 13) and ⟦G-Verdict⟧.
 
 ## Notes
 
 - Tracker writes use only the active `a24577t` keyring `gh` login; remove `GITHUB_TOKEN` and
   `GH_TOKEN` from every `gh` command's environment and never inspect token values.
-- Read-only AWS discovery, when separately authorized, uses the established named lab profile
-  with every identifier masked before output; no AWS mutation is authorized during Wayfinder.
-  The T02 (#3) deployment mode, the T15 (#10) contract, the T16 (#11) topology, the T09 (#12)
-  snapshot contract, the T19 (#14) adoption/migration strategy, the T10 (#15) assignment
-  rules, the T21 (#20) permission-set representation, the T22 (#21) manual-prerequisite
-  model, the T23 (#23) header and documentation-set decisions, and the T20 (#22) CI plan
-  contract and PR classes are targets, not authorizations. Nothing in GitHub (protections,
-  environments, secrets, workflows) has been configured by the map; T06's mechanisms and
-  T15's minimum control set are proposals for S5/S6 under separate authorization.
+- Read-only AWS discovery, when separately authorized, uses the established named lab
+  profile with every identifier masked before output; no AWS mutation is authorized during
+  Wayfinder. The T02 (#3) deployment mode, the T15 (#10) contract, the T16 (#11) topology,
+  the T09 (#12) snapshot contract, the T19 (#14) adoption/migration strategy, the T10 (#15)
+  assignment rules, the T21 (#20) permission-set representation, the T22 (#21)
+  manual-prerequisite model, the T23 (#23) header and documentation-set decisions, the T20
+  (#22) CI plan contract and PR classes, and the T14 (#19) validation contract are targets,
+  not authorizations. Nothing in GitHub (protections, environments, secrets, workflows) has
+  been configured by the map; T06's mechanisms and T15's minimum control set are proposals
+  for S5/S6 under separate authorization.
