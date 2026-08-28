@@ -23,17 +23,28 @@ only through Repository Gates. Not an architecture document.
   two normative architecture documents (each `status: accepted` per its T23 header),
   together with the gate-approved slice-A engineering specification and brownfield
   implementation plan, whose authority derives from the approved ⟦G-Accept⟧ record and
-  their repository placement (they carry no T23 header).
+  their repository placement (they carry no T23 header). Two later records, each
+  accepted at a narrow ⟦G-Accept⟧: the
+  [execution-grouping amendment](../../../docs/specifications/slice-a-execution-grouping-amendment.md)
+  supersedes only §10's ticket-consumption mapping (the specification remains
+  byte-unchanged), and the
+  [repository byte-identity amendment](../../../docs/specifications/repository-byte-identity-amendment.md)
+  fixes hash authority on canonical Git-blob bytes and governs the root
+  `.gitattributes` (LF text; exact-byte JSON).
 
 ## Objective
 
 - **Current Objective:** run Skill Step S6 (`to-tickets`) against the accepted
   [slice-A engineering specification](../../../docs/specifications/slice-a-engineering-specification.md)
-  §10 breakdown (one ticket per work item, edges per the dependency column).
-- **Next Milestone:** implementation tickets published; S7–S11 implement and verify the
-  first frontier work item under the decision-gated lifecycle. The three empirical
-  conditions (provider execution; `forget` representation; import redaction) remain open
-  and gate what their records say they gate.
+  §10 breakdown as consumed through the accepted
+  [execution-grouping amendment](../../../docs/specifications/slice-a-execution-grouping-amendment.md)
+  (eight grouped tickets R1–R8, one per amendment row; native edges per its §4
+  seven-edge transitive reduction; §10 rows carried as traced sub-items).
+- **Next Milestone:** the eight grouped implementation tickets published with edges;
+  S7–S11 implement and verify the first frontier ticket (R1) under the decision-gated
+  lifecycle. The three empirical conditions (provider execution; `forget`
+  representation; import redaction) remain open and gate what their records say they
+  gate.
 
 ## Repository Version sentinel
 
