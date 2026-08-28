@@ -1,0 +1,13 @@
+G-Accept (narrow): execution-grouping and byte-identity amendments; STATUS reconciled
+
+Adds the slice-A execution-grouping amendment (S6 consumes eight grouped
+tickets R1-R8 with full row and edge traceability) and the repository
+byte-identity amendment with its root .gitattributes (canonical LF text,
+exact-byte JSON, Git-blob bytes as hash authority). The accepted engineering
+specification is byte-unchanged (Git blob
+97faf7cb658e1238c695dcfe6ab00e2b749a10a0, SHA-256
+5679d79656052410e118b18a224b590e303315906c132fc8bdc92f72297557ad). Removes
+the transient Repository Continuity Artifact and transition-payload
+directory: the transition completes in this merge. No invariant, contract,
+behavior, catalog selection, pin, authorization boundary, or open
+architecture question changes.
