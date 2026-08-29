@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Independent review class",
+  "description": "governance/ownership/review-classes/<class-key>.yml - an independent approval class; the sole authority for the class-to-principal relationship (T06 #8 d2). No authored enforcement-status scalar exists: actual enforcement is derived and evidenced, never self-declared (GOV-CLASS). One review event or physical identity never satisfies more than one independently required class for a change.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "description": "Stable class key; equals the filename stem exactly.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "satisfied_by": {
+      "description": "Non-empty list of principal keys; every referenced principal must resolve in the registry (validator check).",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+      }
+    }
+  },
+  "required": ["key", "description", "satisfied_by"],
+  "additionalProperties": false
+}

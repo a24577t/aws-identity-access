@@ -1,0 +1,8 @@
+key: identity-platform
+description: >-
+  Independent identity-platform review of requester-surface and identity-binding
+  changes (T06 #8 decisions 2–3). In the single-collaborator lab this class is
+  technically unenforced for changes requiring more than one independent class;
+  enforcement status is always derived, never authored here.
+satisfied_by:
+  - identity-platform

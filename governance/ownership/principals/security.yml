@@ -1,0 +1,5 @@
+key: security
+kind: role
+description: >-
+  The security review role — co-reviews identity bindings, permission-set content,
+  and every control surface carrying the strictest owner set (T06 #8 decisions 2–3).

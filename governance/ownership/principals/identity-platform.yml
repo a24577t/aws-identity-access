@@ -1,0 +1,6 @@
+key: identity-platform
+kind: role
+description: >-
+  The identity-platform owner role — responsible for the requester surface, the
+  governed Identity Center configuration, and the manual prerequisites recorded in
+  instance.yml (T06 #8 decision 2; T22 #21 decision 6).

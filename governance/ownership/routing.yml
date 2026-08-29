@@ -1,0 +1,78 @@
+# Review-routing table — the path-routing records of T06 #8 decision 3.
+# Semantics: routing yields the SET UNION of the review classes of every matching
+# route; a more-specific route never erases a stricter matching requirement;
+# GitHub's last-match-wins is not the domain model. Every governed path matches an
+# explicit route or fails closed — an uncovered path is a validation error
+# (GOV-ROUTE; T06 #8 decision 5). Pattern grammar: ** matches across path
+# segments; * matches within one segment.
+#
+# The strictest applicable owner set for control surfaces is
+# identity-platform + security + architecture (T06 #8 decision 3). Two root
+# control files postdate the decision-3 root inventory (main @ 3643cf7) and are
+# routed to the strictest set under the same rule: .gitattributes (Git-control,
+# governed by the repository byte-identity amendment) and CONTEXT.md (the domain
+# glossary of the accepted domain model).
+
+unrouted: fail-closed
+
+routes:
+  # --- requester surface (T06 #8 decision 3, slice-A requester routes) ---
+  - path: access/**
+    review_classes: [identity-platform]
+  - path: access/identity-center/configuration/instance.yml
+    review_classes: [identity-platform, security]
+  - path: access/identity-center/groups/**
+    review_classes: [identity-platform, security]
+  - path: access/identity-center/permission-sets/**
+    review_classes: [identity-platform, security]
+  # Account delegation: the required class is resolved from the consumed
+  # inventory's delegation data for the <account-name> segment; slice A resolves
+  # every assignment path to identity-platform; an unknown, ambiguous, inactive,
+  # or otherwise unroutable account is an error, never a permissive fallback
+  # (T06 #8 decision 3; T10 #15 decision 5).
+  - path: access/identity-center/account-assignments/*/**
+    resolution: account-delegation
+
+  # --- platform and control surfaces (strictest set) ---
+  - path: governance/**
+    review_classes: [identity-platform, security, architecture]
+  - path: schemas/**
+    review_classes: [identity-platform, security, architecture]
+  - path: infrastructure/**
+    review_classes: [identity-platform, security, architecture]
+  - path: src/**
+    review_classes: [identity-platform, security, architecture]
+  - path: tests/**
+    review_classes: [identity-platform, security, architecture]
+  - path: .github/**
+    review_classes: [identity-platform, security, architecture]
+  - path: .ai/**
+    review_classes: [identity-platform, security, architecture]
+  - path: .claude/**
+    review_classes: [identity-platform, security, architecture]
+  - path: CLAUDE.md
+    review_classes: [identity-platform, security, architecture]
+
+  # --- documentation (unequal authority; T06 #8 decision 3) ---
+  - path: docs/architecture/**
+    review_classes: [identity-platform, security, architecture]
+  - path: docs/adr/**
+    review_classes: [identity-platform, security, architecture]
+  - path: docs/specifications/**
+    review_classes: [identity-platform, security, architecture]
+  - path: docs/**
+    review_classes: [identity-platform]
+
+  # --- root-level control and navigation files ---
+  - path: .gitignore
+    review_classes: [identity-platform, security, architecture]
+  - path: .gitattributes
+    review_classes: [identity-platform, security, architecture]
+  - path: LICENSE
+    review_classes: [identity-platform, security, architecture]
+  - path: aws-identity-access-poc-prompt.md
+    review_classes: [identity-platform, security, architecture]
+  - path: CONTEXT.md
+    review_classes: [identity-platform, security, architecture]
+  - path: README.md
+    review_classes: [identity-platform]

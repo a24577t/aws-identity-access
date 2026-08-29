@@ -1,0 +1,7 @@
+key: security
+description: >-
+  Independent security review of identity bindings, permission-set content, and
+  strictest-set control surfaces (T06 #8 decisions 2–3). Enforcement status is
+  always derived, never authored here.
+satisfied_by:
+  - security

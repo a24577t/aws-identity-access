@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ownership-registry principal",
+  "description": "governance/ownership/principals/<principal-key>.yml - a stable, provider-neutral logical principal, never a GitHub identity (T06 #8 d2). No review-class membership and no GitHub usernames/teams/e-mails or other provider handles; the principal-to-GitHub-handle binding is a deferred implementation mapping (GOV-PRINCIPAL).",
+  "type": "object",
+  "properties": {
+    "key": {
+      "description": "Stable owner-registry key; equals the filename stem exactly.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+    },
+    "kind": {
+      "enum": ["role", "team"]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": ["key", "kind", "description"],
+  "additionalProperties": false
+}

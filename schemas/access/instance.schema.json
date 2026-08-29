@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Identity Center instance declaration",
+  "description": "access/identity-center/configuration/instance.yml - declaration-and-verification data, never a claim that this repository creates or owns the instance lifecycle (ADR-0005; T22 #21 d1-d2). Exact field set; unknown fields rejected (CFG-FIELDS). No live identifier field exists in this schema.",
+  "type": "object",
+  "properties": {
+    "instance_type": {
+      "description": "Closed vocabulary; an account instance is rejected (T22 #21 d1; CFG-VOCAB).",
+      "const": "organization"
+    },
+    "primary_region": {
+      "description": "Must equal the T15 #10 d3 value; instance.yml is the sole regional authority (CFG-REGION).",
+      "const": "us-east-1"
+    },
+    "additional_regions": {
+      "description": "Must equal the T15 #10 d3 value (CFG-REGION).",
+      "type": "array",
+      "maxItems": 0
+    },
+    "identity_source": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Governed vocabulary, extensible only by a future governed decision; the current vocabulary holds exactly identity-center-default (T22 #21 d2). The selected-slice profile narrowing carries P-OOS-IDENTITY-SOURCE.",
+          "enum": ["identity-center-default"]
+        }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "delegated_administrator": {
+      "description": "An inventory alias in the established alias grammar; a declared prerequisite only - this repository never performs registration (T22 #21 d1; T16 #11 d6).",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+    },
+    "owner": {
+      "description": "A T06 #8 principal key; the responsible owner of the manual prerequisites. Resolution against the ownership registry is the validator's GOV-OWNER check.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+    },
+    "verification": {
+      "description": "Optional and structurally all-or-nothing: absent means unverified; when present both fields are required (T22 #21 d1; CFG-VERIFICATION). Binding, freshness, and snapshot checks live at plan/apply (PRQ-*), never here.",
+      "type": "object",
+      "properties": {
+        "verified_at": {
+          "description": "The exact RFC 3339 UTC body.discovered_at string of the referenced snapshot - an informational projection, never an independent freshness clock; byte-equality is enforced at plan/apply. Fractional seconds accepted when present.",
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?Z$"
+        },
+        "snapshot_id": {
+          "description": "The snapshot content digest - exactly 64 lowercase hexadecimal characters; the binding reference to the current binding snapshot.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": ["verified_at", "snapshot_id"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "instance_type",
+    "primary_region",
+    "additional_regions",
+    "identity_source",
+    "delegated_administrator",
+    "owner"
+  ],
+  "additionalProperties": false
+}

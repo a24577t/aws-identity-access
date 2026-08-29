@@ -1,0 +1,6 @@
+key: deployment-authority
+kind: role
+description: >-
+  The deployment authority role — approves exactly one saved plan for one scope and
+  one attempt through the environment gate; never inferred from merge or code review
+  (T06 #8 decision 4).
