@@ -67,11 +67,16 @@ class Context:
         byte-lexicographic order (C14 canonical traversal)."""
         key = "files"
         if key not in self._cache:
-            paths = [
-                p.relative_to(self.target).as_posix()
-                for p in self.target.rglob("*")
-                if p.is_file()
-            ]
+            paths = []
+            for p in self.target.rglob("*"):
+                if not p.is_file():
+                    continue
+                rel = p.relative_to(self.target).as_posix()
+                # Git object storage and interpreter caches are not governed
+                # content.
+                if rel.startswith(".git/") or "__pycache__" in rel:
+                    continue
+                paths.append(rel)
             self._cache[key] = sorted(paths)
         return self._cache[key]
 
@@ -112,3 +117,23 @@ def run(stage, target, config=None):
 
 
 register("public-leak", ("validation", "generated-ci"), leak.check_tree)
+
+from . import checks_access  # noqa: E402  (registration order is load order)
+from . import checks_doc  # noqa: E402
+from . import checks_governance  # noqa: E402
+
+register("out-of-slice", ("validation",), checks_access.check_out_of_slice)
+register("groups", ("validation",), checks_access.check_groups)
+register("permission-sets", ("validation",), checks_access.check_permission_sets)
+register("assignments", ("validation",), checks_access.check_assignments)
+register("instance", ("validation",), checks_access.check_instance)
+register("fixture", ("validation",), checks_governance.check_fixture)
+register("registry", ("validation",), checks_governance.check_registry)
+register("routing", ("validation",), checks_governance.check_routing)
+register("declarations", ("validation",), checks_governance.check_declarations)
+register("codeowners", ("generated-ci",), checks_governance.check_codeowners)
+register("docs", ("validation",), checks_doc.check_docs)
+
+from . import checks_plan  # noqa: E402
+
+register("plan-battery", ("plan", "apply"), checks_plan.check_plan_stage)

@@ -27,6 +27,17 @@ hash-locked in `src/requirements.txt`): `python -m unittest discover -s tests`.
 - `test_validator_runner.py` — R2 #27 row-3: the validator run seam (closed
   stage vocabulary, hermetic validation boundary, deterministic output) and
   the `INV-PUBLIC-LEAK` rule with exactly its single ARN exemption.
+- `test_validator_access_families.py` — R2 #27 row-4: the KEY / ASN / P-OOS /
+  CFG families at their canonical layers, including the approved
+  `{ASN-SHAPE, P-OOS-USER}` pair and the fixed out-of-slice wording.
+- `test_validator_governance_families.py` — R2 #27 row-4: the FIX / GOV / DOC
+  families, the fixture-surface INV validation arms, and the generated-ci
+  `GOV-CODEOWNERS` agreement check.
+- `test_validator_plan_stage.py` — R2 #27 row-4: the plan/apply battery over
+  the explicit plan-context input — the INV snapshot/live verification
+  classes, the PRQ prerequisite gate, the `KEY-PROTECTED` pre-existing arm,
+  and the plan-side GOV codes (`GOV-DECL-MATCH`, `GOV-ENFORCEMENT`,
+  `GOV-APPROVAL-CLASS`).
 
 The per-code fixture tree `tests/fixtures/{valid,invalid/<CODE>}/` lands with
 R2 #27 row 7.

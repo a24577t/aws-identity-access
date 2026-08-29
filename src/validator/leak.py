@@ -61,8 +61,26 @@ def scan_text(text):
 
 def check_tree(ctx):
     """Scan every decodable file of the target tree (committed public
-    content, T15 #10 d12); locators are canonical line numbers (C14)."""
+    content, T15 #10 d12); locators are canonical line numbers (C14).
+
+    The configured inventory fixture is skipped: FIX-LIVE canonically owns
+    the fixture surface's leak semantics (one root cause, one code)."""
+    fixture_rel = None
+    if ctx.config.inventory_fixture is not None:
+        from pathlib import Path
+
+        try:
+            fixture_rel = (
+                Path(ctx.config.inventory_fixture)
+                .resolve()
+                .relative_to(ctx.target.resolve())
+                .as_posix()
+            )
+        except ValueError:
+            fixture_rel = None
     for rel in ctx.files():
+        if rel == fixture_rel:
+            continue
         try:
             text = ctx.read_bytes(rel).decode("utf-8")
         except UnicodeDecodeError:
