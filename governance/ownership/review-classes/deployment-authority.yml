@@ -1,0 +1,8 @@
+key: deployment-authority
+description: >-
+  Independent apply authorization bound to the reviewed saved plan and its
+  deployment scope; realized through the environment gate's required reviewers
+  (T06 #8 decision 4). Not a path-routing class; enforcement status is always
+  derived, never authored here.
+satisfied_by:
+  - deployment-authority

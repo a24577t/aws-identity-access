@@ -1,0 +1,7 @@
+key: architecture
+description: >-
+  Independent architecture review of governance, schema, infrastructure, CI, and
+  repository-authority surfaces (T06 #8 decisions 2–3). Enforcement status is
+  always derived, never authored here.
+satisfied_by:
+  - architecture
