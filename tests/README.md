@@ -39,5 +39,10 @@ hash-locked in `src/requirements.txt`): `python -m unittest discover -s tests`.
   and the plan-side GOV codes (`GOV-DECL-MATCH`, `GOV-ENFORCEMENT`,
   `GOV-APPROVAL-CLASS`).
 
+- `test_validator_adm.py` — R2 #27 row-5: the T21 #20 d6 five-rule hazard
+  detector (`ADM-CAPABLE`), the T07 #9 cross-file pair (`ADM-STANDING`), and
+  fail-closed catalog integrity (`ADM-CATALOG`; rules 2/4 data-blocked until
+  the row-6 catalogs exist with matching digests).
+
 The per-code fixture tree `tests/fixtures/{valid,invalid/<CODE>}/` lands with
 R2 #27 row 7.

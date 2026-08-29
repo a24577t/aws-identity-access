@@ -29,12 +29,25 @@ class RunConfig:
     """
 
     def __init__(self, resource_name_prefix="ialab-", inventory_fixture=None,
-                 plan_context=None, handle_mapping=None, codeowners=None):
+                 plan_context=None, handle_mapping=None, codeowners=None,
+                 catalog_dir=None, catalog_reference=None):
         self.resource_name_prefix = resource_name_prefix
         self.inventory_fixture = inventory_fixture
         self.plan_context = plan_context
         self.handle_mapping = handle_mapping
         self.codeowners = codeowners
+        # ADM rules 2/4 data (T14 #19 d5; spec 7.4): default to the
+        # repository-controlled catalogs and the validator's committed
+        # catalog reference; overridable for specimen runs.
+        repo_root = Path(__file__).resolve().parent.parent.parent
+        self.catalog_dir = Path(
+            catalog_dir if catalog_dir is not None
+            else repo_root / "governance" / "catalogs"
+        )
+        self.catalog_reference = Path(
+            catalog_reference if catalog_reference is not None
+            else Path(__file__).resolve().parent / "catalog_reference.json"
+        )
 
 
 class Context:
@@ -134,6 +147,8 @@ register("declarations", ("validation",), checks_governance.check_declarations)
 register("codeowners", ("generated-ci",), checks_governance.check_codeowners)
 register("docs", ("validation",), checks_doc.check_docs)
 
+from . import checks_adm  # noqa: E402
 from . import checks_plan  # noqa: E402
 
+register("adm", ("validation",), checks_adm.check_adm)
 register("plan-battery", ("plan", "apply"), checks_plan.check_plan_stage)
