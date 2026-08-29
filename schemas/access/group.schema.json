@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Workforce-group reference",
+  "description": "access/identity-center/groups/<group-key>.yml - a reference to an externally managed workforce group, never created by this repository (configuration contract; T05 #7 d2; ADR-0007). The filename stem must equal key exactly (KEY-FILENAME, enforced by the validator).",
+  "type": "object",
+  "properties": {
+    "key": {
+      "description": "Stable repository identity; equals the filename stem exactly (T05 #7 d1/d2).",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "identity_store_name": {
+      "description": "Exact Identity Store DisplayName of the externally managed group; compared by Unicode code-point sequence with no normalization (T05 #7 d2/d5).",
+      "type": "string",
+      "minLength": 1,
+      "$comment": "The no-leading/trailing-Unicode-whitespace and no-control-character rules (KEY-IDSTORE-NAME) are enforced by the T14 #19 validator; JSON Schema regex cannot express the exact Unicode classes."
+    },
+    "source": {
+      "description": "Optional informational provenance only - never lookup, authorization, or reconciliation input (T05 #7 d2).",
+      "type": "object",
+      "properties": {
+        "provider": { "type": "string", "minLength": 1 },
+        "group_name": { "type": "string", "minLength": 1 }
+      },
+      "required": ["provider", "group_name"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["key", "identity_store_name"],
+  "additionalProperties": false
+}

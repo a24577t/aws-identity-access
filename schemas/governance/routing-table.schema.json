@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Review-routing table",
+  "description": "governance/ownership/routing.yml - the path-routing records of T06 #8 d3. Routing yields a set of required independent review classes; all matching routes combine by set union; a more-specific route never erases a stricter matching requirement; every governed path matches an explicit route or fails closed - an uncovered path is a validation error (GOV-ROUTE).",
+  "type": "object",
+  "properties": {
+    "unrouted": {
+      "description": "The fail-closed default, stated explicitly: a governed path matching no route is a validation error, never a permissive fallback (T06 #8 d3/d5).",
+      "const": "fail-closed"
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "description": "Glob-style governed path pattern (** matches across segments; * within one segment).",
+            "type": "string",
+            "minLength": 1
+          },
+          "review_classes": {
+            "description": "The required independent review classes for paths matching this route.",
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+            }
+          },
+          "resolution": {
+            "description": "account-delegation: the required class is resolved from the consumed inventory's delegation data (intended_classification) for the <account-name> segment; an unknown, ambiguous, inactive, or otherwise unroutable account is an error, never a permissive fallback (T06 #8 d3; T10 #15 d5).",
+            "const": "account-delegation"
+          }
+        },
+        "required": ["path"],
+        "oneOf": [
+          { "required": ["review_classes"] },
+          { "required": ["resolution"] }
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["unrouted", "routes"],
+  "additionalProperties": false
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Permission set",
+  "description": "access/identity-center/permission-sets/<permission-set-key>.yml - repository-managed desired state (configuration contract; T21 #20 d1-d4; T05 #7 d3). This is the domain schema: it admits both policy forms and multiple managed policies for later slices; the selected-slice profile narrowing (exactly one managed_policies entry, no mixing, relay_state unused) is enforced by the T14 #19 validator as P-OOS-POLICY-FORM. No tags, display_name, ARN, or deployed-name field exists; deployed Name and tags are derived in infrastructure/ (T04 #6 d5).",
+  "type": "object",
+  "properties": {
+    "key": {
+      "description": "Stable repository identity; equals the filename stem exactly; the only permission-set value assignments reference (T05 #7 d1/d3).",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 24
+    },
+    "description": {
+      "description": "Required human-readable metadata mapped to the AWS permission-set Description; metadata, never identity (T05 #7 d3).",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 700,
+      "$comment": "The documented AWS PermissionSet.Description character pattern (pin-reverified per T15) is enforced by the T14 #19 validator as KEY-DESCRIPTION."
+    },
+    "session_duration": {
+      "description": "Required and explicit in every file - no inherited defaults, ever (T21 #20 d3). ISO-8601 duration.",
+      "type": "string",
+      "pattern": "^P(([0-9]+[YMWD])+|([0-9]+[YMWD])*T([0-9]+[HMS])+)$"
+    },
+    "relay_state": {
+      "description": "Defined by the domain schema so a later slice can adopt it without schema change; omitted from slice A - absent means AWS default portal behavior (T21 #20 d4). No value-shape rule is asserted pending pinned-provider verification.",
+      "type": "string"
+    },
+    "managed_policies": {
+      "description": "Form 1: AWS-managed policy attachment(s). Entries use the full partition-qualified arn:aws:iam::aws:policy/... form - the sole permitted ARN-shaped public vocabulary (T21 #20 d2).",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^arn:aws:iam::aws:policy/.+$"
+      }
+    },
+    "inline_policy": {
+      "description": "Form 2: the embedded inline policy document, rendered to JSON at plan time; never a reference to an account-local policy (T21 #20 d5; F6).",
+      "type": "object",
+      "properties": {
+        "Version": { "type": "string" },
+        "Id": { "type": "string" },
+        "Statement": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "object" }
+        }
+      },
+      "required": ["Version", "Statement"],
+      "additionalProperties": false,
+      "$comment": "Statement content is analyzed by the T21 #20 d6 standing-admin-capability hazard detector (ADM-CAPABLE, R2 #27), not by this schema."
+    }
+  },
+  "required": ["key", "description", "session_duration"],
+  "anyOf": [
+    { "required": ["managed_policies"] },
+    { "required": ["inline_policy"] }
+  ],
+  "additionalProperties": false
+}

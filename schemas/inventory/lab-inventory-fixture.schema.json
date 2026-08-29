@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Labeled lab inventory fixture",
+  "description": "The committed, explicitly labeled lab inventory fixture: stable logical account aliases only - no actual AWS account names, account IDs, root e-mails, ARNs, or live OU paths, ever (T15 #10 d5; T16 #11 d7; FIX-LIVE is the validator's leak check). Exactly one non-public evidence record holds the alias-to-account binding.",
+  "type": "object",
+  "properties": {
+    "source": {
+      "description": "The explicit fixture label (T15 #10 d5).",
+      "const": "lab-fixture"
+    },
+    "accounts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "alias": {
+            "description": "Stable logical alias in the T05/T15 grammar; immutable once bound (FIX-ALIAS).",
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+          },
+          "class": {
+            "description": "Authorized account class (T15 #10 d1; FIX-CLASS).",
+            "enum": ["management", "lab-workload", "role-host", "requested-fixture"]
+          },
+          "status": {
+            "description": "requested entries remain unbound, validate as deferred (INV-DEFERRED), and are never created (T16 #11 d8; RD-08).",
+            "enum": ["active", "requested"]
+          },
+          "intended_classification": {
+            "description": "The T06 #8 account-delegation review class resolved for assignments under this alias; the literal none means never an assignment target (T16 #11 d7).",
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+          }
+        },
+        "required": ["alias", "class", "status", "intended_classification"],
+        "additionalProperties": false,
+        "$comment": "Exactly these four fields per entry (T15 #10 d5; FIX-FIELDS)."
+      }
+    }
+  },
+  "required": ["source", "accounts"],
+  "additionalProperties": false
+}
