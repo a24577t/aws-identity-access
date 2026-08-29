@@ -12,6 +12,8 @@ If the repository artifacts are unavailable, the review remains pending rather t
 
 A focused re-review may inspect only the changed artifact and the previously recorded finding, rather than repeating the whole review, provided no unrelated change has entered the change set under review.
 
+Independent review means independent judgment, not mandatory re-execution. A reviewer or quality gate may consume prior evidence without reproducing it when that evidence binds the exact artifact or surface evaluated, its commit/blob identity, its relevant input/dependency scope, and — for external state — the observation time and applicable freshness predicate, and integrity verification confirms those bindings still match the artifact under review with no relevant input or dependency changed. The reviewer runs the targeted fresh checks its verdict requires. Evidence that failed, is missing, cannot be integrity-verified, is bound to a changed input or dependency, or covers time-sensitive external state past its freshness predicate is not reusable, and the affected check is re-executed. The lifecycle-side rule is the Decision-Gated Implementation Lifecycle's "Evidence reuse and delta-scoped validation" section (`../decision-gated-implementation-lifecycle.md`).
+
 Every finding must be classified as one of the following:
 
 1. Repository Inconsistency (Must Fix)

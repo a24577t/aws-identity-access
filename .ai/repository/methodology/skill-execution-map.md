@@ -48,20 +48,30 @@ condition just met.
 | S5 | `to-spec-repo-owner` + `domain-modeling` (ADR texts) | Consolidation mode; house format; no publication or authorization | Review-ready texts presented | ⟦G-Accept⟧ | — |
 | — | **⟦G-Accept⟧** owner review → acceptance PR → owner merge; STATUS reconciled in the PR | | Merged; STATUS accurate | S6 | Decision gap → S4 |
 | S6 | `to-tickets` | Consumes the approved spec's breakdown 1:1; labels only per owner authorization | Tickets published with edges | S7 (first frontier ticket, fresh context) | — |
-| S7 | `implement` (one ticket) | Feature branch only; drives S8–S11; never self-merges | Verify chain complete | S8 | — |
+| S7 | `implement` (one ticket) | Feature branch only; uses `tdd` inline when behavior is created or corrected, preserving the genuine red-first record; drives S8–S11; never self-merges | Verify chain complete | S8 | — |
 | S8 | `codebase-design` | *Validate* mode when the spec pre-settled structure | Seams confirmed | S9 | Unratified seam → HALT → E1 |
-| S9 | `tdd` | Red-first record kept; ratified seams only | Suite green | S10 | Unratified question → HALT → E1 |
+| S9 | `tdd` | Closes and verifies the accumulated red/green evidence; ratified seams only; a new TDD loop only for an actual uncovered behavior or defect | Accumulated evidence verified; suite green | S10 | Unratified question → HALT → E1 |
 | S10 | `code-review` (Standards + Spec + **Conformance axis**) | Third axis: conformance to ADRs/spec | Three axes clean | S11 | Findings → S9; crossing → HALT → E1 |
 | S11 | `code-review` as **Quality Gate** | Independent reviewer, review-discipline, verdict | Verdict recorded | ⟦G-Merge⟧ | fail → S9; pass-with-conditions: conditions travel forward |
 | — | **⟦G-Merge⟧** owner merges the ticket PR | | On `main` | S7 (next ticket) | Milestone-Complete → ⟦G-Phase⟧ |
 | — | **⟦G-Phase⟧** phase gate → baseline → release; STATUS reconciled | | Gate PASS; tag/release/STATUS agree | S1 or S2 per new objective | Gate FAIL → S7 |
+
+Evidence discipline across S7–S11: later steps consume scope-bound prior
+evidence — bound to the evaluated artifact, its commit/blob identity, and its
+relevant input/dependency scope — cumulatively, and validate only their own
+exit predicate plus the delta, per the
+[Decision-Gated Implementation Lifecycle](decision-gated-implementation-lifecycle.md)
+("Evidence reuse and delta-scoped validation") and the
+[Review Discipline](prompts/review-discipline.md).
 
 ## Excursion E1 — halt-don't-decide (Refinement)
 
 HALT (from S8/S9/S10) → `grilling` (the one surfaced question) +
 `domain-modeling` → `to-spec-repo-owner`/`domain-modeling` (ratify the
 refinement, append-only) → ⟦G-Refine⟧ owner PR merges; architecture version
-advances → resume the interrupted step, re-running S10.
+advances → resume the interrupted step, revalidating only the changed or
+invalidated seam, diff, and affected dependents under the evidence-reuse
+rules; the remaining verify chain continues normally.
 
 Before the first Architecture Baseline (Pre-Baseline), an E1 decision is
 ratified through a narrow ⟦G-Accept⟧ and no Architecture Version advances;
