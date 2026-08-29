@@ -63,6 +63,11 @@ HALT (from S8/S9/S10) → `grilling` (the one surfaced question) +
 refinement, append-only) → ⟦G-Refine⟧ owner PR merges; architecture version
 advances → resume the interrupted step, re-running S10.
 
+Before the first Architecture Baseline (Pre-Baseline), an E1 decision is
+ratified through a narrow ⟦G-Accept⟧ and no Architecture Version advances;
+from the first baseline onward, E1 uses ⟦G-Refine⟧ and advances the
+Architecture Version.
+
 ## On-ramps
 
 | Situation | Invoke | Complete when | Normal next | Conditional |
