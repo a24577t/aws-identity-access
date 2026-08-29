@@ -44,5 +44,11 @@ hash-locked in `src/requirements.txt`): `python -m unittest discover -s tests`.
   fail-closed catalog integrity (`ADM-CATALOG`; rules 2/4 data-blocked until
   the row-6 catalogs exist with matching digests).
 
+- `test_catalog_generation.py` — R2 #27 row-6: pre-parse §7.1 blob-hash
+  verification (fail closed), the deterministic §7.3 transformation, §7.4
+  canonical output form, regeneration byte-determinism, the committed
+  catalog reference pins, and the executability of ADM rules 2/4 (the
+  blob-reading sweeps need `git` and skip inside the pinned container).
+
 The per-code fixture tree `tests/fixtures/{valid,invalid/<CODE>}/` lands with
 R2 #27 row 7.

@@ -1,0 +1,13 @@
+{
+  "catalogs": {
+    "action-catalog.json": {
+      "bytes": 12129,
+      "sha256": "768b20773baeca514650091fa7759eea05378f3ebeb303f991dbc67ea578e8f7"
+    },
+    "privileged-mutation-actions.json": {
+      "bytes": 7008,
+      "sha256": "95907f2e858d10a365cdbae6f9d9cf80f18f247f6543e0a1201783eeff5f97ad"
+    }
+  },
+  "source_set": "sri-20260828"
+}
