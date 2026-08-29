@@ -1,0 +1,13 @@
+schema_version: 1
+key: rename-lab-readers
+kind: group-key-rename
+owner: identity-platform
+justification: Specimen declared exceptional change (synthetic).
+change_reference: https://github.com/a24577t/aws-identity-access/issues/27
+deployment_scope: lab
+valid_from: "2026-08-01T00:00:00Z"
+affected_paths:
+  - access/identity-center/groups/lab-readers.yml
+expected_plan_effect_class: empty
+from_key: lab-readers
+to_key: lab-viewers

@@ -50,5 +50,24 @@ hash-locked in `src/requirements.txt`): `python -m unittest discover -s tests`.
   catalog reference pins, and the executability of ADM rules 2/4 (the
   blob-reading sweeps need `git` and skip inside the pinned container).
 
-The per-code fixture tree `tests/fixtures/{valid,invalid/<CODE>}/` lands with
-R2 #27 row 7.
+- `test_fixture_tree.py` — R2 #27 row-7: the governed fixture tree.
+
+## Fixture tree (T14 #19 d6; spec §3 W4)
+
+`tests/fixtures/valid/**` mirrors the `access/` and `governance/` layouts
+(the slice files, both `instance.yml` forms — the verified form via harness
+overlay — the five-entry alias fixture, registry/review-class/routing
+records, one declaration per kind, and the T23 header examples) and passes
+with zero error findings; its one inherent deferral (the `lab-requested`
+assignment) is reported as exactly one `INV-DEFERRED` finding of severity
+`deferred` — never invalid (RD-08).
+
+`tests/fixtures/invalid/<CODE>/` holds one deterministic negative fixture
+per active code of the ten R2 families: `run.json` (stage, run inputs, the
+declared expected finding set) plus `tree/` (committed synthetic inputs;
+plan/apply fixtures carry their clock-controlled `plan-context.json`). The
+two approved multi-code expectations are `{ASN-SHAPE, P-OOS-USER}` and
+`{ADM-CAPABLE, ADM-STANDING}`; every other fixture isolates exactly its own
+code. No fixture contains a live identifier, contacts AWS, or is ever
+planned against AWS, uploaded, or applied (§5). `CLS-*`, `GEN-*`, and
+`ADO-*` fixtures land with their implementing ticket (R3 #28).

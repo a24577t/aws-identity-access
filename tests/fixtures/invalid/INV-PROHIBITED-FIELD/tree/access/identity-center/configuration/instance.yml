@@ -1,0 +1,10 @@
+instance_type: organization
+primary_region: us-east-1
+additional_regions: []
+identity_source:
+  type: identity-center-default
+delegated_administrator: lab-tooling
+owner: identity-platform
+verification:
+  verified_at: "2026-08-28T00:46:16Z"
+  snapshot_id: "556e15e45f182834c227157c5b6449726128557ae127719ebfecd870bb69b63c"

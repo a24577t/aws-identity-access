@@ -1,0 +1,11 @@
+{
+  "stage": "generated-ci",
+  "expected": [
+    "GOV-CODEOWNERS"
+  ],
+  "handle_mapping": {
+    "identity-platform": "@a24577t"
+  },
+  "codeowners_file": "CODEOWNERS",
+  "inventory_fixture": "tree/governance/inventory/lab-inventory-fixture.yml"
+}

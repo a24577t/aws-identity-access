@@ -1,0 +1,5 @@
+account: lab-workload-a
+principal:
+  type: GROUP
+  group: ghost-group
+permission_set: read-only

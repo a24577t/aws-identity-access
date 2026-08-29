@@ -1,0 +1,6 @@
+key: read-only
+description: Specimen.
+session_duration: PT8H
+managed_policies:
+  - arn:aws:iam::aws:policy/ReadOnlyAccess
+  - arn:aws:iam::aws:policy/ViewOnlyAccess

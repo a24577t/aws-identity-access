@@ -1,0 +1,5 @@
+key: admin
+description: Intentionally invalid specimen (T07 d2).
+session_duration: PT1H
+managed_policies:
+  - arn:aws:iam::aws:policy/AdministratorAccess

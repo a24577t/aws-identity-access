@@ -1,0 +1,7 @@
+{
+  "stage": "validation",
+  "expected": [
+    "KEY-COMPOSED"
+  ],
+  "resource_name_prefix": "identity-lab-"
+}

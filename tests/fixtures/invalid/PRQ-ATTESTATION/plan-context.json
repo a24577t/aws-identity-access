@@ -1,0 +1,169 @@
+{
+  "clock": "2026-09-01T12:00:00Z",
+  "snapshot": {
+    "envelope": {
+      "snapshot_id": "872b3ab0957bb20107b2a2aaf7c2e66b0f1e9924a18d929acb5c305c372cbeaa",
+      "body": {
+        "schema_version": 1,
+        "kind": "lab-binding-snapshot",
+        "supersedes": null,
+        "fixture": {
+          "path": "governance/inventory/lab-inventory-fixture.yml",
+          "digest": "3c9a4eaad7796be1a6567b4465707c2e0279c602f27a4a338959d4b072193f45",
+          "source_commit": "0000000000000000000000000000000000000000"
+        },
+        "discovered_at": "2026-08-28T00:46:16Z",
+        "producer": {
+          "identity_type": "iam-user",
+          "account_alias": "lab-tooling"
+        },
+        "organization": {
+          "organization_id": "o-synth000abc",
+          "feature_set": "ALL",
+          "root_id": "r-syn0",
+          "management_account_alias": "lab-management"
+        },
+        "identity_center": {
+          "instance_arn": "arn:aws:sso:::instance/ssoins-0000000000000000",
+          "identity_store_id": "d-0000000000",
+          "region": "us-east-1",
+          "delegated_admin_alias": "lab-tooling"
+        },
+        "accounts": [
+          {
+            "alias": "lab-management",
+            "live_name": "synth-management",
+            "account_id": "111100000001",
+            "state": "ACTIVE",
+            "joined_method": "CREATED",
+            "joined_timestamp": "2026-08-28T00:46:16Z",
+            "ou": {
+              "ou_id": "r-syn0",
+              "logical_class": "root"
+            },
+            "tags_verified": true
+          },
+          {
+            "alias": "lab-tooling",
+            "live_name": "synth-tooling",
+            "account_id": "111100000002",
+            "state": "ACTIVE",
+            "joined_method": "INVITED",
+            "joined_timestamp": "2026-08-28T00:46:16Z",
+            "ou": {
+              "ou_id": "ou-syn0-lab00000",
+              "logical_class": "lab"
+            },
+            "tags_verified": true
+          },
+          {
+            "alias": "lab-workload-a",
+            "live_name": "synth-workload-a",
+            "account_id": "111100000003",
+            "state": "ACTIVE",
+            "joined_method": "CREATED",
+            "joined_timestamp": "2026-08-28T00:46:16Z",
+            "ou": {
+              "ou_id": "ou-syn0-lab00000",
+              "logical_class": "lab"
+            },
+            "tags_verified": true
+          },
+          {
+            "alias": "lab-workload-b",
+            "live_name": "synth-workload-b",
+            "account_id": "111100000004",
+            "state": "ACTIVE",
+            "joined_method": "CREATED",
+            "joined_timestamp": "2026-08-28T00:46:16Z",
+            "ou": {
+              "ou_id": "ou-syn0-lab00000",
+              "logical_class": "lab"
+            },
+            "tags_verified": true
+          },
+          {
+            "alias": "lab-requested",
+            "binding": "unbound"
+          }
+        ]
+      }
+    },
+    "object_key_id": "872b3ab0957bb20107b2a2aaf7c2e66b0f1e9924a18d929acb5c305c372cbeaa",
+    "metadata_id": "872b3ab0957bb20107b2a2aaf7c2e66b0f1e9924a18d929acb5c305c372cbeaa",
+    "sidecar_id": "872b3ab0957bb20107b2a2aaf7c2e66b0f1e9924a18d929acb5c305c372cbeaa"
+  },
+  "current_pointer": "872b3ab0957bb20107b2a2aaf7c2e66b0f1e9924a18d929acb5c305c372cbeaa",
+  "pointer_changed": false,
+  "live": {
+    "accounts": [
+      {
+        "Id": "111100000001",
+        "Name": "synth-management",
+        "State": "ACTIVE",
+        "ParentOuId": "r-syn0"
+      },
+      {
+        "Id": "111100000002",
+        "Name": "synth-tooling",
+        "State": "ACTIVE",
+        "ParentOuId": "ou-syn0-lab00000"
+      },
+      {
+        "Id": "111100000003",
+        "Name": "synth-workload-a",
+        "State": "ACTIVE",
+        "ParentOuId": "ou-syn0-lab00000"
+      },
+      {
+        "Id": "111100000004",
+        "Name": "synth-workload-b",
+        "State": "ACTIVE",
+        "ParentOuId": "ou-syn0-lab00000"
+      }
+    ],
+    "pagination_complete": true,
+    "api_error": null,
+    "lab_ou_account_ids": [
+      "111100000002",
+      "111100000003",
+      "111100000004"
+    ],
+    "organization": {
+      "organization_id": "o-synth000abc",
+      "root_id": "r-syn0",
+      "management_account_id": "111100000001"
+    },
+    "identity_center": {
+      "instance_arn": "arn:aws:sso:::instance/ssoins-0000000000000000",
+      "identity_store_id": "d-0000000000",
+      "delegated_admin_account_id": "111100000002",
+      "delegated_admin_service": "sso.amazonaws.com"
+    },
+    "permission_set_names": [],
+    "groups": {
+      "Lab Readers": {
+        "resolved": true,
+        "multiple": false,
+        "display_name_exact": true
+      }
+    },
+    "prerequisites": {
+      "instance": "pass",
+      "identity_store": "pass",
+      "delegated_admin": "pass"
+    }
+  },
+  "attestations": [
+    {
+      "characteristic": "identity-source-console",
+      "snapshot_id": "872b3ab0957bb20107b2a2aaf7c2e66b0f1e9924a18d929acb5c305c372cbeaa",
+      "valid": false
+    }
+  ],
+  "enforcement": [],
+  "review_events": [],
+  "co_satisfaction_rule": false,
+  "trusted_base_declarations": [],
+  "operation": null
+}
