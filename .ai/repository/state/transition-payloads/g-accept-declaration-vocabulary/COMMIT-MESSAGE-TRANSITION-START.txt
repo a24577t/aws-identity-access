@@ -1,0 +1,9 @@
+Transition start: continuity artifact and transport for the narrow G-Accept of the declaration-vocabulary amendment
+
+Begins the acceptance transaction decided at the R1 #26 S8 E1 halt (owner
+decisions Q1-A/Q2-A/Q3-A, 2026-08-28; Q-AV1-A/Q-AV2-A/Q-AV3-A, 2026-08-29).
+Adds the Repository Continuity Artifact and the byte-exact transport payload
+(amendment record, Skill Execution Map Pre-Baseline E1 routing correction,
+STATUS successor, publication plan, PR body, acceptance commit message,
+MANIFEST.sha256). No authoritative artifact changes in this commit; the
+acceptance branch places the payload and deletes both transient paths.
