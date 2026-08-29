@@ -34,15 +34,19 @@ only through Repository Gates. Not an architecture document.
 
 ## Objective
 
-- **Current Objective:** run Skill Step S6 (`to-tickets`) against the accepted
-  [slice-A engineering specification](../../../docs/specifications/slice-a-engineering-specification.md)
-  §10 breakdown as consumed through the accepted
+- **S6 complete:** the eight grouped implementation tickets of the
   [execution-grouping amendment](../../../docs/specifications/slice-a-execution-grouping-amendment.md)
-  (eight grouped tickets R1–R8, one per amendment row; native edges per its §4
-  seven-edge transitive reduction; §10 rows carried as traced sub-items).
-- **Next Milestone:** the eight grouped implementation tickets published with edges;
-  S7–S11 implement and verify the first frontier ticket (R1) under the decision-gated
-  lifecycle. The three empirical conditions (provider execution; `forget`
+  are published with the amendment §4 seven-edge native dependency set:
+  R1 #26, R2 #27, R3 #28, R4 #29, R5 #30, R6 #31,
+  R7 #32, R8 #33.
+- **Current Objective:** run Skill Step S7 (`implement`) against the first frontier
+  ticket R1 (#26, Foundation and contracts — §10 rows 1, 2, 8) with fresh context,
+  through the decision-gated lifecycle S7–S11 (Standards + Spec + Conformance axes and
+  the independent Quality Gate) to ⟦G-Merge⟧.
+- **Next Milestone:** R1 verified and merged at ⟦G-Merge⟧; the frontier then advances
+  per the amendment's native edges (R2 and R5 unblock). R6, R7, and R8 remain
+  separately authorized beyond ticket creation; no Terraform apply before the R6/14a
+  control set is active. The three empirical conditions (provider execution; `forget`
   representation; import redaction) remain open and gate what their records say they
   gate.
 
