@@ -185,6 +185,37 @@ class CatalogueRoster(unittest.TestCase):
         self.assertTrue(catalogue.CATALOGUE["ADO-MANIFEST"].activation)
 
 
+class VerdictConditionCBAnchors(unittest.TestCase):
+    """Spec 9 C-B: citation-anchor corrections applied wherever this
+    implementation translates the T14 record's anchors into stable
+    citations. Expected values are the C-B ledger's, not the T14 anchors."""
+
+    def test_fix_class_carries_the_corrected_class_vocabulary_anchor(self) -> None:
+        # C-B row 2: "T16 d5" for class vocabulary -> T16 #11 decision 2
+        # (classes per T15 #10 decision 1) - never decision 7.
+        self.assertEqual(
+            ("T16 #11 d2", "T15 #10 d1"),
+            catalogue.CATALOGUE["FIX-CLASS"].rule_ids,
+        )
+
+    def test_ado_manifest_carries_the_corrected_deciding_anchor(self) -> None:
+        # C-B row 4: "T19 d21" -> T19 #14 decision 5; d21 is only the
+        # plan-carriage provenance, never the deciding anchor.
+        self.assertEqual(
+            ("T19 #14 d5",), catalogue.CATALOGUE["ADO-MANIFEST"].rule_ids
+        )
+
+    def test_the_other_translated_anchors_stay_corrected(self) -> None:
+        # C-B rows 1 and 3, already applied: the fixture field set (T16 #11
+        # d7, fields per T15 #10 d5) and requested-fixture deferral
+        # (T16 #11 d8 inside CLS-EFFECT's citations).
+        self.assertEqual(
+            ("T16 #11 d7", "T15 #10 d5"),
+            catalogue.CATALOGUE["FIX-FIELDS"].rule_ids,
+        )
+        self.assertIn("T16 #11 d8", catalogue.CATALOGUE["CLS-EFFECT"].rule_ids)
+
+
 class CatalogueSelfValidation(unittest.TestCase):
     def test_committed_catalogue_is_clean(self) -> None:
         self.assertEqual([], catalogue.validate_catalogue())

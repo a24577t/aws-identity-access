@@ -199,7 +199,8 @@ CATALOGUE = {
                      ("T16 #11 d7", "T15 #10 d5")),
     "FIX-CLASS": _e("FIX", "error", (V,),
                     "class outside {management, lab-workload, role-host, requested-fixture}",
-                    ("T16 #11 d7", "T15 #10 d1")),
+                    # spec 9 C-B: the class-vocabulary anchor is T16 #11 d2.
+                    ("T16 #11 d2", "T15 #10 d1")),
     "FIX-ALIAS": _e("FIX", "error", (V,),
                     "alias violates the T05/T15 grammar",
                     ("T15 #10 d5", "T05 #7 d1")),
@@ -282,7 +283,9 @@ CATALOGUE = {
                     ("T19 #14 d2",)),
     "ADO-MANIFEST": _e("ADO", "error", (V,),
                        "adoption-manifest schema violation",
-                       ("T19 #14 d21",),
+                       # spec 9 C-B: the deciding anchor is T19 #14 d5; d21
+                       # section 3 is only the plan-carriage provenance.
+                       ("T19 #14 d5",),
                        state="dormant",
                        activation="Eric's separate authorization of the post-acceptance import-rehearsal phase and the import-redaction gate passing with empirical evidence (T19 d2/d16; T14 #19 C6)"),
 }
