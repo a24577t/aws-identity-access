@@ -72,7 +72,10 @@ Re-entry is a normal, expected move — not a failure. While it is open the slic
                         (the work item never left In Implementation; it paused
                          and now continues — cf. the Remediation destination
                          principle, by analogy only),
-                        re-running Verify-diff and Verify-architecture
+                        revalidating only the changed or invalidated seam,
+                        diff, and affected dependents (evidence reuse and
+                        delta-scoped validation); the remaining verify
+                        chain continues normally
 ```
 
 The decision is ratified in an authoritative artifact **before** code resumes — it never lives only in a commit message or a code comment. Throughout, the work item **remains in *In Implementation*** — it does **not** enter the formal *Remediation* state; it **pauses** while the governing decision is ratified in the appropriate authoritative artifact, then **resumes at the interrupted phase**. The Lifecycle Model's Remediation *destination* rule — "its destination is the interrupted state, not the nearest stable state" — is invoked here only as an **analogous principle**, not as the lifecycle mechanism governing this case.
@@ -102,9 +105,67 @@ Any unchecked item is a crossing: halt the slice and re-enter the Decision phase
 
 **On the name.** *Conformance* over *Compliance*: "Compliance" is a load-bearing term in this project's own product domain (the compliance dimension; `PolicyOutcome` values), and reusing it for a process gate would overload it. "Conformance" states the gate's job precisely — does the implementation conform to the ratified architecture — without colliding with product vocabulary.
 
+## Evidence reuse and delta-scoped validation
+
+Observed motivation (process evidence, not a rule source): the first grouped
+implementation ticket showed the verify chain re-deriving evidence that unchanged
+artifacts already carried. This section removes that duplication without weakening
+any gate.
+
+- **Cumulative evidence (scope-bound, not merely identity-bound).** Evidence is
+  reusable only when it binds all of: the exact artifact or surface evaluated;
+  its commit/blob identity; its relevant input/dependency scope; and, for
+  external state, the observation time and the applicable freshness predicate. A
+  commit SHA alone is insufficient — the commit remains immutable even when later
+  commits change relevant inputs. Before consuming prior evidence, the consumer
+  verifies that no relevant input or dependency has changed: an unrelated later
+  commit does not invalidate evidence; a relevant change does. Evidence so bound
+  and so verified may be consumed by later steps without reproduction, referenced
+  by its binding identity rather than re-running the command that produced it.
+- **Delta-scoped validation.** A later step validates its own distinct exit
+  predicate plus the changes since the last valid evidence; previously passed,
+  unchanged surfaces remain closed. A closed surface reopens only on an
+  invalidation trigger.
+- **Invalidation triggers.** Prior evidence is invalid — and its surface reopens —
+  when any of the following holds: a relevant input or dependency changed; the
+  evidence failed, is missing, or cannot be integrity-verified; the evidenced
+  external state is time-sensitive and may have moved past its freshness
+  predicate; a new finding reaches the prior surface; or a controlling gate
+  explicitly requires fresh execution.
+- **Independence without duplication.** Independent review means independent
+  judgment over the change and the accumulated evidence. It does not
+  automatically require rerunning every mechanical check: the reviewer verifies
+  evidence integrity — the bindings above still match the artifact under
+  review — and runs the targeted checks its verdict needs. The review-side rule
+  is stated in the [Review Discipline](prompts/review-discipline.md).
+- **Implementation/TDD ordering.** Implementation (Build) uses TDD inline when
+  behavior is created or corrected, producing the genuine red-first record at
+  that time. The dedicated test step closes and verifies the accumulated test
+  evidence and suite-green status; it starts a new red/green loop only for an
+  actual uncovered behavior or defect. No retrospective or artificial failure is
+  manufactured merely to satisfy ceremony; where a chronological red cannot be
+  produced honestly, the deviation is recorded, never fabricated.
+- **Review-chain economy.** Seam validation (Shape/validate) runs once and later
+  revalidates only a changed seam and its affected dependents. The diff review
+  performs its Standards, Specification, and Conformance axes together, once,
+  against the final diff. The independent quality gate evaluates the final diff
+  and the accumulated evidence, with targeted fresh checks only where justified.
+  Evidence-producing commands are referenced by commit/result rather than
+  routinely repeated.
+- **Boundaries retained — this section weakens nothing.** Session bootstrap
+  remains once per session. Pre-write hash/state verification remains required at
+  actual publication and mutation boundaries, and remote writes remain
+  round-trip verified. Live AWS/Terraform and security-sensitive gates retain
+  their explicit fresh-evidence requirements (freshness rules, snapshots, live
+  re-verification). Fail-closed behavior is never weakened by evidence reuse:
+  where the validity of prior evidence is uncertain, the check is re-executed.
+
 ## Traceability
 
 - The governing principle and the halt-don't-decide rule implement **[P1](principles.md)** (human-owned decisions) and the methodology's **decision/design separation** (the MADR register versus design documents).
 - The re-entry path **is** the Lifecycle Model's **Refinement excursion** — a work-item-scoped activity causing a project-scoped, append-only architecture refinement (MADR-0002). During it the work item stays in *In Implementation* and resumes at the interrupted phase; the Remediation *destination* rule is cited only as an analogous principle, not as the governing mechanism.
 - "No ad hoc architecture decision merges" is enforced as a transition postcondition: Architecture Conformance Review is a precondition of Merge.
+- The **evidence-reuse and delta-scoped-validation rules** are evolvable process
+  design generalizing the Review Discipline's focused re-review rule; nothing
+  foundational depends on their specific shape.
 - The phase-to-tool mappings are **evolvable design** — the named tools are the current implementations of these transitions; nothing foundational depends on a specific tool.
