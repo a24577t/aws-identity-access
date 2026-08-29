@@ -16,14 +16,14 @@ methodology live under [`.ai/`](.ai/README.md) (see [`CLAUDE.md`](CLAUDE.md)).
 
 | Root | Purpose |
 |---|---|
-| `access/` | the requester surface — ordinary access-request PRs modify only this tree (ADR-0003); content lands at S6 under the accepted layout |
-| `governance/` | declarations that are not routine access grants: ownership registry, review classes, change declarations, catalog data (T06 #8; S6) |
+| `access/` | the requester surface — governed desired access containing no code, credentials, generated AWS identifiers, or runtime state; ordinary access-request PRs modify only this tree (ADR-0003; T04 #6 decision 2) |
+| `governance/` | declarations that are not routine access grants: ownership registry, review classes, change-declaration schemas, catalog data (T06 #8) |
 | `docs/` | documentation with unequal authority: `architecture/` (normative), `guides/` (informative), `adr/` (register), `wayfinding/`·`research/` (records/evidence), `generated/` (S6; visibly non-authoritative), `specifications/` |
-| `schemas/` | JSON Schemas validating governed configuration (RD-04; S6) |
-| `infrastructure/` | Terraform and deployment mechanics; derives deployed names (S6) |
-| `src/` | validation and effective-plan implementation code (S6) |
-| `tests/` | executable validation tests and per-code fixtures (T14 #19; S6) |
-| `.github/` | CI, generated CODEOWNERS, repository automation (S6) |
+| `schemas/` | JSON Schemas validating governed configuration (RD-04; the configuration contract) |
+| `infrastructure/` | Terraform and deployment mechanics; derives deployed names (R5 #30) |
+| `src/` | validation and effective-plan implementation code (R2 #27, R3 #28) |
+| `tests/` | executable validation tests and per-code fixtures (T14 #19; fixtures land with R2 #27) |
+| `.github/` | CI, generated CODEOWNERS, repository automation (R3 #28, R4 #29) |
 
 ## Documentation (reading order — T23 #23 decision 5)
 
@@ -66,16 +66,21 @@ may introduce a surface only through a governed decision.
 - `docs/generated/` — generated effective-access examples and views arrive only with the
   S6 tooling under the T20 #22 decision-6 metadata contract; nothing generated is authored
   by hand.
-- Validator, schemas, fixtures, workflows, CODEOWNERS, and all implementation — S6 work
-  items of the accepted engineering specification; none exist yet.
+- Validator, per-code fixtures, workflows, CODEOWNERS, plan tooling, and Terraform —
+  remaining S6 work items of the accepted engineering specification (R2 #27 – R8 #33);
+  the R1 #26 foundation (skeleton, `access/` slice files, schemas, governance registry)
+  is present.
 - The lab environment itself (AWS Organization, Identity Center instance, accounts) — the
-  T16 #11 decision-11 staged remediation, each stage separately authorized; committed
-  `access/` content including `instance.yml` lands at S6.
+  T16 #11 decision-11 staged remediation, each stage separately authorized. The committed
+  `access/` content is alias-only; the real `lab-readers` group is confirmed only at
+  remediation Stage 5.2, and `instance.yml` carries no `verification` block until first
+  verification (T22 #21 decision 1).
 
 ## Status
 
 The slice-A architecture set (register, normative documents, guides, specifications) is
-proposed for acceptance at ⟦G-Accept⟧; see
+accepted at ⟦G-Accept⟧; implementation proceeds through the eight grouped tickets
+R1 #26 – R8 #33 of the execution-grouping amendment. See
 [`.ai/repository/state/STATUS.md`](.ai/repository/state/STATUS.md) for the authoritative
 current objective. Wayfinder discovery records live under
 [`docs/wayfinding/`](docs/wayfinding/README.md); the intake brief

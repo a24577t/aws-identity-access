@@ -1,0 +1,12 @@
+key: inventory-reader
+description: Narrow read access to basic IAM account and identity inventory.
+session_duration: PT1H
+inline_policy:
+  Version: "2012-10-17"
+  Statement:
+    - Sid: ReadIdentityInventory
+      Effect: Allow
+      Action:
+        - iam:GetAccountSummary
+        - iam:ListAccountAliases
+      Resource: "*"
