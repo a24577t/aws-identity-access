@@ -47,8 +47,8 @@
       "items": { "type": "string", "minLength": 1 }
     },
     "expected_plan_effect_class": {
-      "description": "Fixed to zero AWS mutations (T06 #8 d5).",
-      "const": "zero-aws-mutations"
+      "description": "The T20 #22 d5 fixed class for the group-key-rename declared-change PR: empty - realizing T06 #8 d5's zero AWS mutations (declaration-vocabulary amendment, correction D1).",
+      "const": "empty"
     },
     "lab_exception_reference": {
       "description": "Applicable lab-exception reference, if any (T06 #8 d5).",

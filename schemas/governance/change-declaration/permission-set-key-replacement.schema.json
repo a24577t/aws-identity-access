@@ -47,7 +47,7 @@
       "items": { "type": "string", "minLength": 1 }
     },
     "expected_plan_effect_class": {
-      "description": "The expected plan-effect class the plan gate matches: creates only for introduce; retiring only the old resources for retire (GOV-DECL-MATCH).",
+      "description": "The T20 #22 d5 fixed classes: creates-only when phase is introduce; deletes-only when phase is retire (declaration-vocabulary amendment, correction D2; GOV-DECL-MATCH).",
       "type": "string",
       "minLength": 1
     },
@@ -97,11 +97,30 @@
     "to_key",
     "phase"
   ],
-  "if": {
-    "properties": { "phase": { "const": "retire" } }
-  },
-  "then": {
-    "required": ["introduce_completion_evidence", "destroy_acknowledgement"]
-  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "phase": { "const": "introduce" } },
+        "required": ["phase"]
+      },
+      "then": {
+        "properties": {
+          "expected_plan_effect_class": { "const": "creates-only" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "phase": { "const": "retire" } },
+        "required": ["phase"]
+      },
+      "then": {
+        "required": ["introduce_completion_evidence", "destroy_acknowledgement"],
+        "properties": {
+          "expected_plan_effect_class": { "const": "deletes-only" }
+        }
+      }
+    }
+  ],
   "additionalProperties": false
 }

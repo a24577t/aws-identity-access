@@ -47,9 +47,17 @@
       "items": { "type": "string", "minLength": 1 }
     },
     "expected_plan_effect_class": {
-      "description": "The expected plan-effect class the plan gate matches (GOV-DECL-MATCH).",
-      "type": "string",
-      "minLength": 1
+      "description": "The expected plan-effect class the plan gate matches (GOV-DECL-MATCH), drawn from the closed T20 #22 d5 vocabulary (declaration-vocabulary amendment, correction D3).",
+      "enum": [
+        "empty",
+        "creates-only",
+        "updates-only",
+        "deletes-only",
+        "mixed",
+        "imports-only",
+        "state-removal-only",
+        "guard-removal-no-live-change"
+      ]
     },
     "lab_exception_reference": {
       "description": "Applicable lab-exception reference, if any (T06 #8 d5).",
