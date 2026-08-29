@@ -45,16 +45,21 @@ only through Repository Gates. Not an architecture document.
   are published with the amendment §4 seven-edge native dependency set:
   R1 #26, R2 #27, R3 #28, R4 #29, R5 #30, R6 #31,
   R7 #32, R8 #33.
-- **Current Objective:** run Skill Step S7 (`implement`) against the first frontier
-  ticket R1 (#26, Foundation and contracts — §10 rows 1, 2, 8) with fresh context,
+- **R1 complete:** R1 #26 (Foundation and contracts — §10 rows 1, 2, 8) passed the
+  full verify chain (S8 PASS; S9 evidence on the ticket; S10 three-axis PASS; S11
+  PASS WITH CONDITIONS) and merged at ⟦G-Merge⟧ via PR #35, merge commit
+  `dfe76edde39c8ee0af87a7fa286c3d5e25bf048d`; #26 is closed as completed. The two
+  non-blocking S11 conditions travel with R2 #27: C1 (correct both
+  `permission-set-key-replacement` schema descriptions' "impossible by schema"
+  overclaim, preserving authored/wired byte identity) and C2 (update
+  `tests/README.md`'s test enumeration when `tests/` is next edited).
+- **Current Objective:** run Skill Step S7 (`implement`) against the next frontier
+  ticket R2 (#27, Validation and catalog system — §10 rows 3–7) with fresh context,
   through the decision-gated lifecycle S7–S11 (Standards + Spec + Conformance axes and
-  the independent Quality Gate) to ⟦G-Merge⟧. S7 structure landed on
-  `ticket/r1-foundation-and-contracts`; the S8 validate review halted to E1 on the
-  declaration-vocabulary seam, ratified by the narrowly accepted amendment; next:
-  the D1–D3 S7 correction pass on the ticket branch, then the interrupted S8
-  re-validated in narrow mode, then S9 only after that S8 passes.
-- **Next Milestone:** R1 verified and merged at ⟦G-Merge⟧; the frontier then advances
-  per the amendment's native edges (R2 and R5 unblock). R6, R7, and R8 remain
+  the independent Quality Gate) to ⟦G-Merge⟧. R5 #30 is also unblocked; R2 #27 is
+  next in the amendment/map order and neither ticket is claimed.
+- **Next Milestone:** R2 verified and merged at ⟦G-Merge⟧; the frontier then advances
+  per the amendment's native edges (R3 unblocks). R6, R7, and R8 remain
   separately authorized beyond ticket creation; no Terraform apply before the R6/14a
   control set is active. The three empirical conditions (provider execution; `forget`
   representation; import redaction) remain open and gate what their records say they
