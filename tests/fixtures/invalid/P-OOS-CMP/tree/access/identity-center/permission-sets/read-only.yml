@@ -1,0 +1,6 @@
+key: read-only
+description: Specimen.
+session_duration: PT8H
+customer_managed_policies:
+  - name: my-policy
+    path: /

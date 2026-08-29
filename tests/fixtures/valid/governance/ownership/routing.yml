@@ -1,0 +1,10 @@
+unrouted: fail-closed
+routes:
+  - path: access/**
+    review_classes: [identity-platform]
+  - path: governance/**
+    review_classes: [identity-platform]
+  - path: docs/**
+    review_classes: [identity-platform]
+  - path: access/identity-center/account-assignments/*/**
+    resolution: account-delegation

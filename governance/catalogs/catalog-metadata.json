@@ -1,0 +1,56 @@
+{
+  "excluded_prefixes": {
+    "clouddirectory": "unrelated surface",
+    "cognito-identity": "unrelated surface",
+    "identity-sync": "organization-side sync administration, outside T21's named scope",
+    "identitystore-auth": "authentication flows, no configuration mutation",
+    "signin": "unrelated surface",
+    "sso-oauth": "authentication flows, no configuration mutation"
+  },
+  "generator_version": "1",
+  "included_prefixes": [
+    "iam",
+    "identitystore",
+    "sso",
+    "sso-directory"
+  ],
+  "source_set": "sri-20260828",
+  "sources": [
+    {
+      "bytes": 70396,
+      "name": "_index.json",
+      "retrieved": "2026-08-28T00:46:16Z",
+      "sha256": "7cfe03fdd10349530045f654d5dc2c9455a1506eaf7ba20ea4225901a96b2dda",
+      "url": "https://servicereference.us-east-1.amazonaws.com/"
+    },
+    {
+      "bytes": 131515,
+      "name": "iam.json",
+      "retrieved": "2026-08-28T00:46:43Z",
+      "sha256": "0cc573ce2dec7e2122845c45961e9fa3448ef76d364fb800db98292e0e3d6d61",
+      "url": "https://servicereference.us-east-1.amazonaws.com/v1/iam/iam.json"
+    },
+    {
+      "bytes": 86805,
+      "name": "sso.json",
+      "retrieved": "2026-08-28T00:46:43Z",
+      "sha256": "b950f51b6311417d035088e8092f96b0c4018c0572ee83bef668c94422282e7a",
+      "url": "https://servicereference.us-east-1.amazonaws.com/v1/sso/sso.json"
+    },
+    {
+      "bytes": 22020,
+      "name": "identitystore.json",
+      "retrieved": "2026-08-28T00:46:43Z",
+      "sha256": "fbb14245e33e72a636168c53b27d03f0584314991f14a5a2a2950edd309b98c8",
+      "url": "https://servicereference.us-east-1.amazonaws.com/v1/identitystore/identitystore.json"
+    },
+    {
+      "bytes": 20299,
+      "name": "sso-directory.json",
+      "retrieved": "2026-08-28T00:46:43Z",
+      "sha256": "c03548fa4533682f3953b9b0ab583dd612beff2134c1425aa3f390e25ef5f70b",
+      "url": "https://servicereference.us-east-1.amazonaws.com/v1/sso-directory/sso-directory.json"
+    }
+  ],
+  "transformation": "mutation iff IsWrite or IsPermissionManagement or IsTaggingOnly (specification 7.3; no name heuristics)"
+}

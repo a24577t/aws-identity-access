@@ -1,0 +1,8 @@
+# Direct dependencies of the slice-A validator (specification 8.1; changes
+# only via platform-change PR). The hash-locked requirements.txt is generated
+# from this file by `pip-compile --generate-hashes` run inside the pinned
+# container (python:3.12.7-slim@sha256:60d9996b6a8a3689d36db740b49f4327be3be0
+# 9a21122bd02fb8895abb38b50d) with pip 24.2 / pip-tools 7.4.1; installs use
+# only `pip install --require-hashes -r src/requirements.txt`.
+PyYAML == 6.0.2
+jsonschema == 4.23.0

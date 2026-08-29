@@ -1,0 +1,8 @@
+source: lab-fixture
+accounts:
+  - { alias: lab-management, class: management,        status: active,    intended_classification: none }
+  - { alias: lab-tooling,    class: role-host,         status: active,    intended_classification: none }
+  - { alias: lab-workload-a, class: lab-workload,      status: active,    intended_classification: identity-platform }
+  - { alias: lab-workload-b, class: lab-workload,      status: active,    intended_classification: identity-platform }
+  - { alias: lab-requested,  class: requested-fixture, status: requested, intended_classification: identity-platform }
+  - { alias: lab-tooling,    class: role-host,         status: active,    intended_classification: none }

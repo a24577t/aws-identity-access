@@ -1,0 +1,4 @@
+key: identity-platform
+description: Specimen.
+satisfied_by:
+  - ghost-principal

@@ -1,0 +1,9 @@
+instance_type: organization
+primary_region: us-east-1
+additional_regions: []
+identity_source:
+  type: identity-center-default
+delegated_administrator: lab-tooling
+owner: identity-platform
+verification:
+  snapshot_id: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

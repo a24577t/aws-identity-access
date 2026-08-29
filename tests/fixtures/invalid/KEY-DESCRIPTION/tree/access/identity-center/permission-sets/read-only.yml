@@ -1,0 +1,5 @@
+key: read-only
+description: ""
+session_duration: PT8H
+managed_policies:
+  - arn:aws:iam::aws:policy/ReadOnlyAccess

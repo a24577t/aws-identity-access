@@ -1,0 +1,8 @@
+{
+  "stage": "plan",
+  "expected": [
+    "INV-BOUNDARY"
+  ],
+  "plan_context": "plan-context.json",
+  "inventory_fixture": "tree/governance/inventory/lab-inventory-fixture.yml"
+}

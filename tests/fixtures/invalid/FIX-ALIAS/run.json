@@ -1,0 +1,7 @@
+{
+  "stage": "validation",
+  "expected": [
+    "FIX-ALIAS"
+  ],
+  "inventory_fixture": "tree/governance/inventory/lab-inventory-fixture.yml"
+}

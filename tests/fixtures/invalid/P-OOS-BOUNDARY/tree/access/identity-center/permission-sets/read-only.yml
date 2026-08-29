@@ -1,0 +1,7 @@
+key: read-only
+description: Read-only access via the AWS-managed ReadOnlyAccess policy.
+session_duration: PT8H
+managed_policies:
+  - arn:aws:iam::aws:policy/ReadOnlyAccess
+permissions_boundary:
+  managed_policy: specimen

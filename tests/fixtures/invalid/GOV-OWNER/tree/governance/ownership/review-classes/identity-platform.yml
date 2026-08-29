@@ -1,0 +1,4 @@
+key: identity-platform
+description: Independent identity-platform review (specimen mirror).
+satisfied_by:
+  - identity-platform

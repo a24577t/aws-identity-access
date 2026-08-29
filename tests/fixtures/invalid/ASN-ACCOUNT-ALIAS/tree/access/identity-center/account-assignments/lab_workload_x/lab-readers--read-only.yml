@@ -1,0 +1,5 @@
+account: lab_workload_x
+principal:
+  type: GROUP
+  group: lab-readers
+permission_set: read-only

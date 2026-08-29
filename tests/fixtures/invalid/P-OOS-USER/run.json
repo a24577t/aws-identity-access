@@ -1,0 +1,7 @@
+{
+  "stage": "validation",
+  "expected": [
+    "ASN-SHAPE",
+    "P-OOS-USER"
+  ]
+}

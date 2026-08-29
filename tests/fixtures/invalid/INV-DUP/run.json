@@ -1,0 +1,7 @@
+{
+  "stage": "validation",
+  "expected": [
+    "INV-DUP"
+  ],
+  "inventory_fixture": "tree/governance/inventory/lab-inventory-fixture.yml"
+}

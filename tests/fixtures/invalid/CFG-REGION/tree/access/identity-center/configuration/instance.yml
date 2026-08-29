@@ -1,0 +1,7 @@
+instance_type: organization
+primary_region: us-west-2
+additional_regions: []
+identity_source:
+  type: identity-center-default
+delegated_administrator: lab-tooling
+owner: identity-platform
