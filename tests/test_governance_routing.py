@@ -16,6 +16,7 @@ validator is R2 #27 work under the T14 #19 contract.
 """
 
 import re
+import shutil
 import subprocess
 import unittest
 from pathlib import Path
@@ -122,6 +123,11 @@ class RoutingCoverage(unittest.TestCase):
     def setUp(self) -> None:
         self.router = load_router()
 
+    @unittest.skipUnless(
+        shutil.which("git"),
+        "needs git for ls-files; the pinned validator container carries no "
+        "git - this coverage check runs on the host and in CI instead",
+    )
     def test_every_tracked_path_resolves(self) -> None:
         tracked = subprocess.run(
             ["git", "ls-files"],
