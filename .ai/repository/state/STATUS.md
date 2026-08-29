@@ -53,13 +53,23 @@ only through Repository Gates. Not an architecture document.
   `permission-set-key-replacement` schema descriptions' "impossible by schema"
   overclaim, preserving authored/wired byte identity) and C2 (update
   `tests/README.md`'s test enumeration when `tests/` is next edited).
+- **R2 complete:** R2 #27 (Validation and catalog system — §10 rows 3–7) passed
+  the full verify chain (S8 PASS; S9 evidence and correction addendum on the
+  ticket; S10 three-axis PASS; S11 PASS WITH CONDITIONS) and merged at
+  ⟦G-Merge⟧ via PR #37, merge commit
+  `441c0d103b477309358750ccf0a90a52be2f614c`; #27 is closed as completed.
+  Its two non-blocking S11 conditions travel with R3 #28: C1 (remove or
+  disposition the four identified vestigial constructs during R3's authorized
+  `src/validator` work) and C2 (document the ADM rule-2/4 condition-gating
+  boundary; any behavior change routes through E1). The recorded allocation
+  note for `ADO-PHASE` and the CLS/GEN fixtures also travels with R3.
 - **Current Objective:** run Skill Step S7 (`implement`) against the next frontier
-  ticket R2 (#27, Validation and catalog system — §10 rows 3–7) with fresh context,
+  ticket R3 (#28, Plan analysis and generated governance — §10 rows 9, 10, 12) with fresh context,
   through the decision-gated lifecycle S7–S11 (Standards + Spec + Conformance axes and
-  the independent Quality Gate) to ⟦G-Merge⟧. R5 #30 is also unblocked; R2 #27 is
+  the independent Quality Gate) to ⟦G-Merge⟧. R5 #30 is also unblocked; R3 #28 is
   next in the amendment/map order and neither ticket is claimed.
-- **Next Milestone:** R2 verified and merged at ⟦G-Merge⟧; the frontier then advances
-  per the amendment's native edges (R3 unblocks). R6, R7, and R8 remain
+- **Next Milestone:** R3 verified and merged at ⟦G-Merge⟧; the frontier then advances
+  per the amendment's native edges (R4 unblocks). R6, R7, and R8 remain
   separately authorized beyond ticket creation; no Terraform apply before the R6/14a
   control set is active. The three empirical conditions (provider execution; `forget`
   representation; import redaction) remain open and gate what their records say they
