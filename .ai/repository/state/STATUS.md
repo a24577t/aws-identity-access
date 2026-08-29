@@ -23,14 +23,20 @@ only through Repository Gates. Not an architecture document.
   two normative architecture documents (each `status: accepted` per its T23 header),
   together with the gate-approved slice-A engineering specification and brownfield
   implementation plan, whose authority derives from the approved ⟦G-Accept⟧ record and
-  their repository placement (they carry no T23 header). Two later records, each
+  their repository placement (they carry no T23 header). Three later records, each
   accepted at a narrow ⟦G-Accept⟧: the
   [execution-grouping amendment](../../../docs/specifications/slice-a-execution-grouping-amendment.md)
   supersedes only §10's ticket-consumption mapping (the specification remains
   byte-unchanged), and the
   [repository byte-identity amendment](../../../docs/specifications/repository-byte-identity-amendment.md)
   fixes hash authority on canonical Git-blob bytes and governs the root
-  `.gitattributes` (LF text; exact-byte JSON).
+  `.gitattributes` (LF text; exact-byte JSON), and the
+  [declaration-vocabulary amendment](../../../docs/specifications/slice-a-declaration-vocabulary-amendment.md)
+  — ratified through the Pre-Baseline E1 route (Skill Execution Map, Excursion
+  E1) — fixes the executable field table of the change-declaration records
+  (executable renderings of T06 #8 decision 5; plan-effect classes per T20 #22
+  decision 5), the cited records prevailing on any divergence. The Architecture
+  Baseline, Baseline Version, and Architecture Version remain `none`.
 
 ## Objective
 
@@ -42,7 +48,11 @@ only through Repository Gates. Not an architecture document.
 - **Current Objective:** run Skill Step S7 (`implement`) against the first frontier
   ticket R1 (#26, Foundation and contracts — §10 rows 1, 2, 8) with fresh context,
   through the decision-gated lifecycle S7–S11 (Standards + Spec + Conformance axes and
-  the independent Quality Gate) to ⟦G-Merge⟧.
+  the independent Quality Gate) to ⟦G-Merge⟧. S7 structure landed on
+  `ticket/r1-foundation-and-contracts`; the S8 validate review halted to E1 on the
+  declaration-vocabulary seam, ratified by the narrowly accepted amendment; next:
+  the D1–D3 S7 correction pass on the ticket branch, then the interrupted S8
+  re-validated in narrow mode, then S9 only after that S8 passes.
 - **Next Milestone:** R1 verified and merged at ⟦G-Merge⟧; the frontier then advances
   per the amendment's native edges (R2 and R5 unblock). R6, R7, and R8 remain
   separately authorized beyond ticket creation; no Terraform apply before the R6/14a
