@@ -17,6 +17,8 @@ sources:
     revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
   - path: access/identity-center/permission-sets/read-only.yml
     revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+  - path: governance/inventory/lab-inventory-fixture.yml
+    revision: "8dceaa192b73e9948e795be8a28dcafa6720dbd1"
 target:
   path: docs/generated/views/requester.md
 ---
@@ -28,6 +30,6 @@ requester surface. Non-authoritative rendering.
 
 ## lab-readers
 
-- lab-requested: read-only (session PT8H; portal ialab-read-only) - unresolved - no committed inventory fixture (deferral derives from the fixture)
-- lab-workload-a: read-only (session PT8H; portal ialab-read-only) - unresolved - no committed inventory fixture (deferral derives from the fixture)
-- lab-workload-b: read-only (session PT8H; portal ialab-read-only) - unresolved - no committed inventory fixture (deferral derives from the fixture)
+- lab-requested: read-only (session PT8H; portal ialab-read-only) - deferred - reported deferred, never rejected (RD-08)
+- lab-workload-a: read-only (session PT8H; portal ialab-read-only) - standing - until changed by governed PR
+- lab-workload-b: read-only (session PT8H; portal ialab-read-only) - standing - until changed by governed PR

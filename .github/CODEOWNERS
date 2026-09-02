@@ -23,6 +23,6 @@
 /aws-identity-access-poc-prompt.md @a24577t
 /CONTEXT.md @a24577t
 /README.md @a24577t
-# account-delegation rules derive from the committed inventory fixture;
-# no committed inventory fixture exists at generation time - unresolved,
-# never a permissive fallback (T06 #8 d3; T10 #15 d5).
+/access/identity-center/account-assignments/lab-requested/** @a24577t
+/access/identity-center/account-assignments/lab-workload-a/** @a24577t
+/access/identity-center/account-assignments/lab-workload-b/** @a24577t
