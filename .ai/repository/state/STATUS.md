@@ -123,8 +123,10 @@ only through Repository Gates. Not an architecture document.
   non-blocking recommendations only — no owner assigned. Zero Terraform
   execution, zero AWS contact, zero GitHub-configuration change; no lab
   verification or production readiness is claimed.
-- **Portable foundation checkpoint:** the accepted
+- **Portable foundation checkpoint:** the
   [portable-development foundation checkpoint amendment](../../../docs/specifications/portable-development-foundation-checkpoint-amendment.md)
+  — accepted at ⟦G-Accept⟧ through PR #42, true merge
+  `56dec8710b8056b4eb312bdfe0f48f3a7889dd73` —
   fixes R1–R5 — the merged products of PRs #35, #37, #38, #39, and #40 — as
   this repository's portable source-code foundation. This repository will
   not execute R6, R7, or R8: their contracts transfer intact to the
@@ -135,15 +137,25 @@ only through Repository Gates. Not an architecture document.
   company-confidential value transfers through this repository. The
   repository claims no GitHub control activation, no AWS deployment, no lab
   verification, and no production readiness.
-- **Current Objective:** execute the amendment's post-acceptance sequence,
-  in order: (1) disposition R6 #31, R7 #32, and R8 #33 exactly as amendment
-  §6 directs — transferred/deferred, closed as not planned, never as
-  completed; (2) run the applicable checkpoint phase/release gate over the
-  checkpoint scope; (3) only if that gate passes, publish
-  `v0.1.0-foundation.1` atomically (annotated tag + GitHub Release + STATUS
-  reconciliation, operator-guide S7/S8). Neither the tag nor the release
-  exists yet. Pending their §6 disposition, #31–#33 remain open with their
-  recorded dependency edges as history.
+- **§6 dispositions complete:** R6 #31, R7 #32, and R8 #33 are closed as
+  **not planned — never as completed** per amendment §6, each with its
+  disposition comment:
+  [#31](https://github.com/a24577t/aws-identity-access/issues/31#issuecomment-5518172076)
+  (item 14a transferred to the destination company repository);
+  [#32](https://github.com/a24577t/aws-identity-access/issues/32#issuecomment-5518176121)
+  (item 14b transferred to the destination company environment; C1 preserved
+  verbatim as a destination-environment obligation);
+  [#33](https://github.com/a24577t/aws-identity-access/issues/33#issuecomment-5518179439)
+  (item 15 transferred/deferred to an environment-specific validation
+  effort). R6–R8 were transferred/deferred, not completed; dependency edges
+  remain as history; the three empirical conditions remain unresolved; no
+  lab-verification or production-readiness claim exists.
+- **Current Objective:** run the applicable checkpoint phase/release gate
+  (operator-guide S4/S5 as applicable, then S7) over the R1–R5 checkpoint
+  scope; only if that gate passes, publish `v0.1.0-foundation.1` atomically
+  (annotated tag + GitHub Release + STATUS reconciliation, operator-guide
+  S8). The version remains proposed and unpublished: neither the tag nor the
+  release exists yet.
 - **Next Milestone:** `v0.1.0-foundation.1` published through the release
   gate; the destination company repository then begins at its own first
   product objective — the IAM PR MVP (amendment §8; fleet roles and
