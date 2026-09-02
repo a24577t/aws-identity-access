@@ -1,0 +1,177 @@
+# R4 #29 row 11 - the post-merge `lab-plan` environment job (T15 #10 d15;
+# T20 #22 d4; T06 #8 d4). Runs from the exact `main` source commit and
+# produces the encrypted applicable saved plan, its digests, the
+# deterministically derived effective-access summary, and the
+# authorization-binding record the `lab` environment consumes. Any input
+# change invalidates the authorization; apply never re-plans.
+#
+# Authoring, not activation (T15 #10 d15 procedural interval): until R6 #31
+# configures the `lab-plan` environment and R7 #32 provisions the OIDC plan
+# role, evidence chain, and state backend, this job is necessarily inert -
+# every preflight below fails closed with the missing prerequisite named.
+# Values that would be live identifiers (role ARN, state bucket, evidence
+# URI) are referenced by GitHub variable name only and appear nowhere in
+# repository content (T15 #10 d5/d9/d12).
+#
+# Pins (spec 8.1): actions by full 40-hex SHA; Terraform 1.15.7 exact,
+# fetched from the official release and verified against the recorded
+# SHA256SUMS entry before use (fail closed); the committed provider lock is
+# consumed read-only; deterministic derivation runs inside the pinned
+# validator container; the runner is transport and its image identity is
+# recorded. TF_LOG stays disabled; the plan JSON and plaintext saved plan
+# are never published (T20 #22 d7).
+name: lab-plan
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: lab-deployment
+  cancel-in-progress: false
+
+env:
+  # Validator execution container (spec 8.1) - immutable multi-arch digest.
+  CONTAINER: python:3.12.7-slim@sha256:60d9996b6a8a3689d36db740b49f4327be3be09a21122bd02fb8895abb38b50d
+  TF_VERSION: "1.15.7"
+  # terraform_1.15.7_linux_amd64.zip - official SHA256SUMS
+  # (https://releases.hashicorp.com/terraform/1.15.7/), retrieved 2026-09-02.
+  TF_ZIP_SHA256: "73bbb8f5188ad75d4fb853fd100ae4d7e146ef7af7db18776109642fdb7759d2"
+  TF_LOG: ""
+  TF_IN_AUTOMATION: "1"
+  # Committed public encryption material (T15 #10 d9); R5 #30 authors the
+  # infrastructure root that carries it. Fail-closed preflight below.
+  PLAN_ENCRYPTION_PUBLIC_KEY: infrastructure/keys/lab-plan-encryption.pub
+  TERRAFORM_ROOT: infrastructure/identity-center
+  STATE_KEY: aws-identity-access/lab/identity-center/terraform.tfstate
+
+jobs:
+  lab-plan:
+    runs-on: ubuntu-24.04
+    environment: lab-plan
+    env:
+      LAB_PLAN_ROLE_ARN: ${{ vars.LAB_PLAN_ROLE_ARN }}
+      LAB_STATE_BUCKET: ${{ vars.LAB_STATE_BUCKET }}
+      LAB_EVIDENCE_BINDING_URI: ${{ vars.LAB_EVIDENCE_BINDING_URI }}
+    steps:
+      - name: Record the actual runner-image identity (spec 8.1 run evidence)
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence" "$RUNNER_TEMP/plan"
+          echo "runner-image=${ImageOS:-unknown}-${ImageVersion:-unknown}" |
+            tee "$RUNNER_TEMP/evidence/runner-identity.txt"
+
+      - name: Check out the exact main source commit (full history)
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+
+      - name: Fail closed on missing activation prerequisites (R5/R6/R7)
+        run: |
+          fail() { echo "fail closed: $1"; exit 1; }
+          test -n "$LAB_PLAN_ROLE_ARN" ||
+            fail "LAB_PLAN_ROLE_ARN unset - R7 #32 provisions the OIDC plan role (T15 #10 d6)"
+          test -n "$LAB_STATE_BUCKET" ||
+            fail "LAB_STATE_BUCKET unset - R6/R7 configure the state backend reference (T15 #10 d16)"
+          test -n "$LAB_EVIDENCE_BINDING_URI" ||
+            fail "LAB_EVIDENCE_BINDING_URI unset - T16 #11 d11 Stage 6.3 has not produced the binding evidence"
+          test -d "$TERRAFORM_ROOT" ||
+            fail "$TERRAFORM_ROOT absent - R5 #30 authors the Terraform roots"
+          test -f "$TERRAFORM_ROOT/.terraform.lock.hcl" ||
+            fail "committed provider lock absent (spec 8.1; T21 #20 F2)"
+          test -f "$PLAN_ENCRYPTION_PUBLIC_KEY" ||
+            fail "$PLAN_ENCRYPTION_PUBLIC_KEY absent - R5 #30 commits the plan-encryption public key (T15 #10 d9)"
+
+      - name: Install Terraform 1.15.7 exact (spec 8.1; checksum-verified, fail closed)
+        run: |
+          curl -fsSLo "$RUNNER_TEMP/terraform.zip" \
+            "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+          echo "$TF_ZIP_SHA256  $RUNNER_TEMP/terraform.zip" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/tf"
+          unzip -oq "$RUNNER_TEMP/terraform.zip" -d "$RUNNER_TEMP/tf"
+          "$RUNNER_TEMP/tf/terraform" version | tee "$RUNNER_TEMP/evidence/terraform-version.txt"
+          grep -q "Terraform v$TF_VERSION" "$RUNNER_TEMP/evidence/terraform-version.txt"
+
+      - name: Assume the read-only plan role (OIDC; environment-bound subject, T15 #10 d6)
+        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5.1.1
+        with:
+          role-to-assume: ${{ vars.LAB_PLAN_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Retrieve the current plan-context evidence (T09 #12 snapshot chain)
+        run: |
+          aws s3 cp "$LAB_EVIDENCE_BINDING_URI" "$RUNNER_TEMP/plan/plan-context.json"
+          test -s "$RUNNER_TEMP/plan/plan-context.json" ||
+            { echo "fail closed: empty plan-context evidence"; exit 1; }
+
+      - name: Produce the applicable saved plan from this exact commit (never printed)
+        working-directory: infrastructure/identity-center
+        run: |
+          "$RUNNER_TEMP/tf/terraform" init -input=false -lockfile=readonly \
+            -backend-config="bucket=$LAB_STATE_BUCKET" \
+            -backend-config="key=$STATE_KEY" \
+            -backend-config="region=us-east-1" \
+            -backend-config="use_lockfile=true"
+          "$RUNNER_TEMP/tf/terraform" plan -input=false -out="$RUNNER_TEMP/plan/tfplan" > /dev/null
+          "$RUNNER_TEMP/tf/terraform" show -json "$RUNNER_TEMP/plan/tfplan" \
+            > "$RUNNER_TEMP/plan/plan.json"
+
+      - name: Export committed blobs and revisions (transport - git lives on the runner)
+        run: python3 -m validator.ci export --out "$RUNNER_TEMP/export"
+        env:
+          PYTHONPATH: src
+
+      - name: Download the hash-locked wheel set (the one pinned network step, spec 8.2)
+        run: >-
+          docker run --rm -v "$GITHUB_WORKSPACE:/work" -v "$RUNNER_TEMP:/ci"
+          -w /work "$CONTAINER"
+          pip download --require-hashes -r src/requirements.txt -d /ci/wheels
+
+      - name: Gate, summarize, and bind (validator.ci lab-plan; fail closed)
+        run: |
+          EXPIRES=$(date -u -d '+24 hours' +%Y-%m-%dT%H:%M:%SZ)
+          docker run --rm --network none -v "$GITHUB_WORKSPACE:/work" \
+            -v "$RUNNER_TEMP:/ci" -w /work -e PYTHONPATH=/work/src "$CONTAINER" \
+            sh -ec "pip install --require-hashes --no-index --find-links /ci/wheels \
+            -r src/requirements.txt && \
+            python -m validator.ci lab-plan \
+            --export /ci/export --context /ci/plan/plan-context.json \
+            --plan-file /ci/plan/tfplan --source-commit $GITHUB_SHA \
+            --expires $EXPIRES --out-dir /ci/evidence"
+
+      - name: Encrypt the applicable saved plan (public material only, T15 #10 d9)
+        run: |
+          openssl rand -out "$RUNNER_TEMP/plan/plan-key.bin" 32
+          openssl enc -aes-256-cbc -pbkdf2 -salt \
+            -in "$RUNNER_TEMP/plan/tfplan" -out "$RUNNER_TEMP/evidence/tfplan.enc" \
+            -pass "file:$RUNNER_TEMP/plan/plan-key.bin"
+          openssl pkeyutl -encrypt -pubin -inkey "$PLAN_ENCRYPTION_PUBLIC_KEY" \
+            -in "$RUNNER_TEMP/plan/plan-key.bin" \
+            -out "$RUNNER_TEMP/evidence/plan-key.bin.enc" \
+            -pkeyopt rsa_padding_mode:oaep -pkeyopt rsa_oaep_md:sha256
+          rm -f "$RUNNER_TEMP/plan/plan-key.bin"
+          (cd "$RUNNER_TEMP/evidence" && sha256sum tfplan.enc plan-key.bin.enc \
+            authorization-binding.json effective-access-summary.md | tee digests.txt)
+
+      - name: Publish the encrypted plan and binding evidence (immutable artifact)
+        id: publish
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: applicable-saved-plan
+          path: |
+            ${{ runner.temp }}/evidence/tfplan.enc
+            ${{ runner.temp }}/evidence/plan-key.bin.enc
+            ${{ runner.temp }}/evidence/authorization-binding.json
+            ${{ runner.temp }}/evidence/effective-access-summary.md
+            ${{ runner.temp }}/evidence/findings.json
+            ${{ runner.temp }}/evidence/digests.txt
+            ${{ runner.temp }}/evidence/runner-identity.txt
+            ${{ runner.temp }}/evidence/terraform-version.txt
+
+      - name: Record the immutable artifact id (the lab consumption input)
+        run: |
+          echo "artifact-id=${{ steps.publish.outputs.artifact-id }}"
+          echo "The lab environment consumes exactly this artifact by id (T06 #8 d4)."
