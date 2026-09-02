@@ -1,0 +1,28 @@
+# Generated CODEOWNERS - do not edit; regeneration is the only
+# change path. Metadata: docs/generated/generated-artifacts.yml (T20 #22 d6).
+/access/** @a24577t
+/access/identity-center/configuration/instance.yml @a24577t
+/access/identity-center/groups/** @a24577t
+/access/identity-center/permission-sets/** @a24577t
+/governance/** @a24577t
+/schemas/** @a24577t
+/infrastructure/** @a24577t
+/src/** @a24577t
+/tests/** @a24577t
+/.github/** @a24577t
+/.ai/** @a24577t
+/.claude/** @a24577t
+/CLAUDE.md @a24577t
+/docs/architecture/** @a24577t
+/docs/adr/** @a24577t
+/docs/specifications/** @a24577t
+/docs/** @a24577t
+/.gitignore @a24577t
+/.gitattributes @a24577t
+/LICENSE @a24577t
+/aws-identity-access-poc-prompt.md @a24577t
+/CONTEXT.md @a24577t
+/README.md @a24577t
+# account-delegation rules derive from the committed inventory fixture;
+# no committed inventory fixture exists at generation time - unresolved,
+# never a permissive fallback (T06 #8 d3; T10 #15 d5).

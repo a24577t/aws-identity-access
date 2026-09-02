@@ -1,0 +1,9 @@
+- target:
+    path: docs/generated/views/requester.md
+    sha256: "0000000000000000000000000000000000000000000000000000000000000001"
+  generator:
+    path: src/validator/governance_generator.py
+    version: "1"
+  sources:
+    - path: governance/ownership/routing.yml
+      revision: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

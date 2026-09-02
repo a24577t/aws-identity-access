@@ -230,9 +230,6 @@ def check_permission_sets(ctx):
                          message="composed deployed Name fails the AWS Name "
                                  "pattern")
             by_key.setdefault(composed, []).append(doc.rel)
-        key2 = body.get("key")
-        if isinstance(key2, str):
-            pass
     for composed, rels in sorted(by_key.items()):
         for rel in rels[1:]:
             ctx.emit("KEY-PROTECTED", file_path=rel, value=composed,

@@ -1,0 +1,10 @@
+{
+  "stage": "validation",
+  "expected": [
+    "CLS-COMBINATION"
+  ],
+  "changed_paths": [
+    "governance/change-declarations/replace-read-only.yml",
+    "access/identity-center/account-assignments/lab-workload-a/lab-readers--read-only.yml"
+  ]
+}

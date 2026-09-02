@@ -1,0 +1,9 @@
+- target:
+    path: .github/CODEOWNERS
+    sha256: "311e43ad4efb284a5133787e1e0732be31966cb2cd007361646c4f74786b4bf6"
+  generator:
+    path: src/validator/governance_generator.py
+    version: "1"
+  sources:
+    - path: governance/ownership/routing.yml
+      revision: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

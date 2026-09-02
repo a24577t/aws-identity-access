@@ -89,13 +89,6 @@ class TransformationError(Exception):
     """An action entry the deterministic 7.3 rule cannot classify."""
 
 
-def _add_source(name):
-    for source in SOURCES:
-        if source.name == name:
-            return source
-    raise KeyError(name)
-
-
 # Give each Source its repository path.
 Source.path = property(lambda self: f"{SOURCE_DIR}/{self.name}")
 
@@ -214,7 +207,6 @@ def main(argv=None):
     check_only = "--check" in argv
     root = Path(__file__).resolve().parents[2]
     outputs = generate(read_committed_blob)
-    outputs_with_reference = dict(outputs)
     targets = {
         root / "governance" / "catalogs" / name: blob
         for name, blob in outputs.items()

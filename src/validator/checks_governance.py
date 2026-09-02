@@ -295,9 +295,7 @@ def check_routing(ctx):
             ctx.emit("GOV-ROUTE", file_path=rel,
                      message="uncovered governed path - fail closed, never a "
                              "permissive fallback")
-        elif not yields_class and rel not in {
-            f for f in ()
-        }:
+        elif not yields_class:
             # A path matched only by a delegation route whose resolution
             # failed is already flagged above; a path matched only by
             # malformed routes fails closed here.
