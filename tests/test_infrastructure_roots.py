@@ -455,8 +455,8 @@ class RoleAndDenyModel(unittest.TestCase):
         self.assertIn('resource "aws_iam_role" "lab_apply"', text)
         self.assertIn("trust-github-environment.json.tpl", text)
         self.assertIn("explicit-denies.json.tpl", text)
-        self.assertIn('environment = "lab-plan"', text)
-        self.assertIn('environment = "lab"', text)
+        self.assertRegex(text, r'environment\s+=\s+"lab-plan"')
+        self.assertRegex(text, r'environment\s+=\s+"lab"')
         # The OIDC provider is referenced, never managed (d6).
         self.assertIn('data "aws_iam_openid_connect_provider"', text)
         self.assertNotIn('resource "aws_iam_openid_connect_provider"', text)

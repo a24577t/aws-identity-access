@@ -1,2 +1,14 @@
 .claude/settings.local.json
 __pycache__/
+
+# Terraform working artifacts and local inputs (R5 #30): never committed -
+# state, plans, and tfvars can carry live lab identifiers (T15 #10 d12);
+# ticket #30 forbids committing any init/plan/apply output or provider
+# binary.
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+*.tfvars.json
+crash.log

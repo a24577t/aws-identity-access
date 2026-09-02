@@ -115,7 +115,12 @@ jobs:
             -backend-config="key=$STATE_KEY" \
             -backend-config="region=us-east-1" \
             -backend-config="use_lockfile=true"
-          "$RUNNER_TEMP/tf/terraform" plan -input=false -out="$RUNNER_TEMP/plan/tfplan" > /dev/null
+          # R5 #30 seam: the retrieved binding evidence above is the root's
+          # sole alias-to-account source (T15 #10 d5; T09 #12) - hand the
+          # file to the plan; the root fails closed without it.
+          "$RUNNER_TEMP/tf/terraform" plan -input=false \
+            -var="plan_context_file=$RUNNER_TEMP/plan/plan-context.json" \
+            -out="$RUNNER_TEMP/plan/tfplan" > /dev/null
           "$RUNNER_TEMP/tf/terraform" show -json "$RUNNER_TEMP/plan/tfplan" \
             > "$RUNNER_TEMP/plan/plan.json"
 
