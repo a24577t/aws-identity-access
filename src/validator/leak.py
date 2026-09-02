@@ -14,11 +14,19 @@ Organizations IDs) additionally require at least one digit in the token -
 a documented deterministic narrowing that keeps the real alias-only tree
 clean while every synthetic format-valid specimen (which carries digits)
 still fires.
+
+The exemption is tested against the scanned token stripped of trailing
+characters outside the exemption's own charset (a Markdown backtick or a
+closing parenthesis glued to the token by the conservative token grammar):
+the accepted configuration contract cites the permitted vocabulary as
+`arn:aws:iam::aws:policy/...` inside markup (R4 #29 correction). Only the
+exemption test is affected - every non-exempt ARN shape still fires.
 """
 
 import re
 
 EXEMPT_ARN = re.compile(r"^arn:aws:iam::aws:policy/[A-Za-z0-9+=,.@_/-]+$")
+_EXEMPT_TRAIL = re.compile(r"[^A-Za-z0-9+=,.@_/-]+$")
 
 _PATTERNS = (
     ("arn", re.compile(r"arn:[a-z0-9-]*:[a-z0-9-]*:[a-z0-9-]*:[a-z0-9-]*:[^\s\"',]+")),
@@ -49,7 +57,8 @@ def scan_text(text):
         for kind, pattern in _PATTERNS:
             for match in pattern.finditer(line):
                 token = match.group(0)
-                if kind == "arn" and EXEMPT_ARN.match(token):
+                if kind == "arn" and EXEMPT_ARN.match(
+                        _EXEMPT_TRAIL.sub("", token)):
                     continue
                 if kind in _NEEDS_DIGIT and not any(c.isdigit() for c in token):
                     continue

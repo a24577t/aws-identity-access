@@ -75,6 +75,25 @@ class PublicLeakRule(unittest.TestCase):
         )
         self.assertEqual([], run_codes("validation", self.target))
 
+    def test_markup_quoted_exempt_vocabulary_citation_passes(self) -> None:
+        # The accepted configuration contract cites the sole permitted
+        # vocabulary inside Markdown backticks (`arn:aws:iam::aws:policy/...`);
+        # prose may also close a parenthesis directly after it. The exemption
+        # covers the vocabulary with a trailing markup delimiter glued to the
+        # scanned token (T20 #22 d3; T21 #20 d2) - R4 #29 correction.
+        self.write(
+            "doc.md",
+            "use the `arn:aws:iam::aws:policy/...` form - the sole\n"
+            "exemption (arn:aws:iam::aws:policy/ReadOnlyAccess)\n",
+        )
+        self.assertEqual([], run_codes("validation", self.target))
+
+    def test_markup_quoted_live_arn_still_fires(self) -> None:
+        # The trailing-delimiter allowance affects only the exemption test:
+        # a non-exempt ARN inside the same markup still fires (fail closed).
+        self.write("doc.md", "see `arn:aws:iam::111122223333:role/some-role`\n")
+        self.assertEqual(["INV-PUBLIC-LEAK"], run_codes("validation", self.target))
+
     def test_account_local_arn_fires(self) -> None:
         self.write("x.yml", "role: arn:aws:iam::111122223333:role/some-role\n")
         self.assertEqual(["INV-PUBLIC-LEAK"], run_codes("validation", self.target))
