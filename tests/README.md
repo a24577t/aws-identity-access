@@ -88,6 +88,15 @@ hash-locked in `src/requirements.txt`): `python -m unittest discover -s tests`.
   secret name-boundary, the leak-shape scan over workflow bytes, and
   the §8.2 identical-commands rule.
 
+- `test_infrastructure_roots.py` — R5 #30 row 13: static verification of
+  the committed Terraform roots with zero Terraform execution — root
+  inventory and §8.1 pins (the T21 #20 F2 lock entry), the T15 #10 d16
+  state-key/evidence-prefix layout, the d8 `ialab-<key>` derivation over
+  the committed slice keys, the d6/d7 role/deny model via deterministic
+  rendering of the committed policy templates, ADR-0009/ADR-0007
+  boundary guards, the leak rule over `infrastructure/`, and the R4
+  workflow seams (including the plan-context handoff).
+
 ## Fixture tree (T14 #19 d6; spec §3 W4)
 
 `tests/fixtures/valid/**` mirrors the `access/` and `governance/` layouts
