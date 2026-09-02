@@ -25,6 +25,18 @@ Rules, exactly as ratified:
    set once the catalogs exist.
 5. Any unknown or unsupported broad pattern - fail closed.
 
+Condition-gating boundary (R2 S11 condition C2, documented): the rule-2/4
+coverage arms evaluate only unconditional statements with Resource "*" -
+rule 2's ratified text says "unconditional" explicitly, and rule 4's
+"unbounded" is read the same way. A Condition-gated UNIVERSAL grant
+(Action "*" / "*:*") still fails closed via rule 5 (a broad pattern the
+detector does not compute conditions for), while a Condition-gated
+service-scoped wildcard whose expansion covers a full mutation set is not
+flagged - the detector is ratified as deterministic and conservative, not
+a complete effective-permissions calculation (T21 #20 d6). Changing this
+asymmetry is a behavior change and routes through the halt-don't-decide E1
+refinement channel, never through a silent edit here.
+
 ADM-CATALOG (T14 #19 d5, C9): any invocation of rules 2/4 without valid
 pinned catalog data - absent, digest-mismatched, schema-unsupported, or
 unable to expand a required wildcard - fails closed.
