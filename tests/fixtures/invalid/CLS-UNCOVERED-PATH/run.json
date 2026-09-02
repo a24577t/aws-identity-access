@@ -1,0 +1,9 @@
+{
+  "stage": "validation",
+  "expected": [
+    "CLS-UNCOVERED-PATH"
+  ],
+  "changed_paths": [
+    "mystery/file.txt"
+  ]
+}

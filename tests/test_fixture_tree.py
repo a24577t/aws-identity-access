@@ -35,8 +35,11 @@ FIXTURES = REPO / "tests" / "fixtures"
 VALID = FIXTURES / "valid"
 INVALID = FIXTURES / "invalid"
 
-R2_FAMILIES = {"INV", "PRQ", "P-OOS", "KEY", "ASN", "ADM", "GOV", "FIX",
-               "CFG", "DOC"}
+# The ten R2 families plus the three landed by R3 #28 (CLS/GEN/ADO - the
+# recorded allocation note reconciled): every ACTIVE code carries exactly
+# one deterministic negative fixture; dormant ADO-MANIFEST carries none.
+FAMILIES = {"INV", "PRQ", "P-OOS", "KEY", "ASN", "ADM", "GOV", "FIX",
+            "CFG", "DOC", "CLS", "GEN", "ADO"}
 
 VERIFIED_INSTANCE = (
     "instance_type: organization\n"
@@ -66,6 +69,13 @@ def load_config(directory, tree_root):
     if run.get("codeowners_file"):
         kwargs["codeowners"] = (directory / run["codeowners_file"]).read_text(
             encoding="utf-8")
+    if run.get("changed_paths"):
+        kwargs["changed_paths"] = run["changed_paths"]
+    if run.get("regenerated"):
+        kwargs["regenerated"] = {
+            path: text.encode("utf-8")
+            for path, text in run["regenerated"].items()
+        }
     return run, runner.RunConfig(**kwargs)
 
 
@@ -117,7 +127,7 @@ class InvalidTree(unittest.TestCase):
     def test_every_active_r2_code_has_its_fixture_directory(self) -> None:
         expected = {
             code for code, entry in catalogue.CATALOGUE.items()
-            if entry.family in R2_FAMILIES and entry.state == "active"
+            if entry.family in FAMILIES and entry.state == "active"
         }
         present = {p.name for p in INVALID.iterdir() if p.is_dir()}
         self.assertEqual(expected, present)

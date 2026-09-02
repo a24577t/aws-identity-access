@@ -160,9 +160,11 @@ from . import checks_plan  # noqa: E402
 register("adm", ("validation",), checks_adm.check_adm)
 register("plan-battery", ("plan", "apply"), checks_plan.check_plan_stage)
 
+from . import checks_ado  # noqa: E402
 from . import checks_cls  # noqa: E402
 from . import checks_gen  # noqa: E402
 
+register("ado", ("validation",), checks_ado.check_ado)
 register("cls-paths", ("validation",), checks_cls.check_paths_validation)
 register("cls-plan", ("plan", "apply"), checks_cls.check_plan_classification)
 register("generated", ("validation", "generated-ci"),

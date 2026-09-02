@@ -1,0 +1,9 @@
+{
+  "stage": "generated-ci",
+  "expected": [
+    "GEN-DRIFT"
+  ],
+  "regenerated": {
+    "docs/generated/views/requester.md": "---\nauthority: generated\ndo_not_edit: true\ngenerator:\n  path: src/validator/governance_generator.py\n  version: \"1\"\nsources:\n  - path: governance/ownership/routing.yml\n    revision: \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\ntarget:\n  path: docs/generated/views/requester.md\n---\n\n# Requester view\n\nsynthetic generated specimen\nregenerated divergence\n"
+  }
+}
