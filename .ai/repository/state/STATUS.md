@@ -95,26 +95,38 @@ only through Repository Gates. Not an architecture document.
   owner assigned — for their natural owners (the next authorized `validator.ci`
   touch; the R6 #31 activation pass). Nothing in R4 contacted AWS, executed
   Terraform, changed GitHub configuration, or advanced any empirical condition.
-- **Current Objective:** R5 #30 (Terraform roots and resource model — §10
-  row 13) remains the current work item, **halted at excursion E1** pending
-  the root-control-path classification amendment. Its S7–S11 chain is
-  complete on `ticket/r5-terraform-roots-and-resource-model` @ `680e5151…`
-  (S7 record, S9 closure, S10 PASS, S11 PASS WITH CONDITIONS — C1 traveling
-  to R7 #32 — on the ticket) and PR #40 is open; the first live
-  `plan-preview` run failed closed with `CLS-UNCOVERED-PATH` on
-  `.gitignore`, exposing the accepted-record omission the amendment closes.
-  Resume after acceptance, per the amendment's §4 route: merge `main` into
-  the R5 branch, apply the smallest classifier/test correction (exact
-  paths, red-first), delta-revalidate with S8–S11 addenda on the new head,
-  then ⟦G-Merge⟧ for PR #40. R6 #31 remains unblocked behind R4 but
-  separately authorized beyond ticket creation.
-- **Next Milestone:** R5 verified and merged at ⟦G-Merge⟧; the frontier then advances
-  per the amendment's native edges (R7 #32 unblocks behind R5). A post-R5
-  checkpoint amendment has been proposed by the owner and remains a proposal
-  only, not accepted state. R6, R7, and R8 remain separately authorized beyond
-  ticket creation; no Terraform apply before the R6/14a control set is active.
-  The three empirical conditions (provider execution; `forget` representation;
-  import redaction) remain open and gate what their records say they gate.
+- **R5 complete:** R5 #30 (Terraform roots and resource model — §10 row 13)
+  passed the full verify chain — S8 PASS, S9 evidence, S10 three-axis PASS,
+  and S11 PASS WITH CONDITIONS on `680e5151…`; was halted at excursion E1 by
+  the first live `plan-preview` failure (`CLS-UNCOVERED-PATH` on
+  `.gitignore`), resumed through the accepted
+  [root-control-path classification amendment](../../../docs/specifications/slice-a-root-control-path-classification-amendment.md)
+  (PR #41, merge `bd43ca77…`) and its focused exact-path classifier
+  correction — that omission and correction are resolved; delta-revalidated
+  with S7/S9/S10 addenda and an independent S11 delta attestation on head
+  `112d69c…` (original verdict valid, no added condition), with both
+  current-head automatic PR checks (`validate`, `plan-preview`) passing —
+  and merged at ⟦G-Merge⟧ via PR #40, true merge commit
+  `18e5ca0904cbde9cccf6d60796b3515a5add588f`; #30 is closed as completed.
+  The single non-blocking condition C1 (verify saved-plan `file()` re-read
+  semantics at the first authorized rehearsal; stage the retrieved plan
+  context at the identical path if apply re-reads) travels with R7 #32
+  (handoff comment on the ticket). IR-R5-2 and IR-R4-1…4 remain
+  non-blocking recommendations only — no owner assigned. Zero Terraform
+  execution, zero AWS contact, zero GitHub-configuration change; no lab
+  verification or production readiness is claimed.
+- **Current Objective:** preparation and owner review of the proposed narrow
+  post-R5 portable-development checkpoint amendment before either R6 #31 or
+  R7 #32 begins. The checkpoint remains a proposal only: it does not yet
+  alter accepted architecture, ticket state, or any completion claim.
+- **Next Milestone:** the checkpoint proposal decided at its own gate, then
+  the live frontier — R6 #31 (repository-side control activation) and R7 #32
+  (AWS-side OIDC/bootstrap), both open, unassigned, and unblocked — each
+  requiring its own separate authorization beyond ticket creation; R8 #33
+  remains blocked by open #32. No Terraform apply before the R6/14a control
+  set is active. The three empirical conditions (provider execution; `forget`
+  representation; import redaction) remain open and gate what their records
+  say they gate.
 
 ## Repository Version sentinel
 
