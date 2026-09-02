@@ -9,9 +9,10 @@ validator seam (`runner.run`, `render_preview` / `render_summary` /
 `catalog_generator.generate` / `reference_for`). This module adds transport
 and gating only: staging committed bytes into a run target, feeding the
 explicit run inputs those seams already accept (`changed_paths`,
-`regenerated`, `plan_context`, `inventory_fixture`), serializing findings,
-and mapping severities to exit codes - any `error` finding exits 1
-(fail closed); `deferred` findings report and never fail (RD-08).
+`regenerated`, `plan_context`, `inventory_fixture`, `resolution_paths`),
+serializing findings, and mapping severities to exit codes - any `error`
+finding exits 1 (fail closed); `deferred` findings report and never fail
+(RD-08).
 
 Byte identity: staged inputs are committed-blob bytes (repository
 byte-identity amendment), never a working-tree rendering - read from the
@@ -22,12 +23,19 @@ spec 8.1) and consumed inside the pinned container, which carries no git.
 The validation target domain is the governed surface set the accepted
 validator models and the accepted valid fixture tree mirrors (T14 #19 d6):
 the requester surface, the governance registry/declaration/inventory
-surfaces, and the T23 #23 documentation boundary. Wider repository content
-(wayfinding records, research, methodology) is documentation evidence
-outside the modeled validation domain.
+surfaces, the T23 #23 documentation boundary, and the infrastructure root.
+Wider repository content (wayfinding records, research, methodology) is
+documentation evidence outside the modeled validation domain; reference
+resolution still sees the whole committed path inventory
+(RunConfig.resolution_paths).
 
 Run: python -m validator.ci <command> - identical commands locally and in
 CI (spec 8.2); `--export` swaps only the committed-byte transport.
+Validator imports are deferred into the commands that need them: `export`
+is the one transport command that runs where git lives (the CI runner,
+stdlib-only Python - spec 8.1: the runner is transport); every other
+command runs inside the pinned container, where the hash-locked
+dependencies are installed.
 """
 
 import argparse
@@ -39,13 +47,6 @@ import sys
 import tempfile
 from pathlib import Path
 
-import yaml
-
-from . import catalog_generator, findings, governance_generator, runner
-from .effective_access import PINS, render_preview, render_summary, \
-    summary_digest
-from .governance_generator import GitSources
-
 VALIDATE_PREFIXES = (
     "access/",
     "docs/architecture/",
@@ -55,11 +56,13 @@ VALIDATE_PREFIXES = (
     "governance/ownership/",
     "infrastructure/",
 )
-GENERATED_PREFIXES = (
-    governance_generator.CODEOWNERS_PATH,
-    "docs/generated/",
-)
-FIXTURE_REL = governance_generator.FIXTURE_PATH
+# Contract paths owned by the generator/validator modules; the wiring keeps
+# import-free literals so `export` stays stdlib-only, and the wiring suite
+# asserts equality with the owning constants.
+FIXTURE_REL = "governance/inventory/lab-inventory-fixture.yml"
+CODEOWNERS_REL = ".github/CODEOWNERS"
+HANDLES_REL = "governance/ownership/handles.yml"
+GENERATED_PREFIXES = (CODEOWNERS_REL, "docs/generated/")
 CATALOG_DIR = "governance/catalogs"
 CATALOG_REFERENCE = "src/validator/catalog_reference.json"
 
@@ -107,7 +110,10 @@ class ExportedSources:
 
 def _source(args):
     export = getattr(args, "export", None)
-    return ExportedSources(export) if export else GitSources()
+    if export:
+        return ExportedSources(export)
+    from .governance_generator import GitSources
+    return GitSources()
 
 
 def _stage(source, prefixes, staged_root):
@@ -126,12 +132,14 @@ def _stage(source, prefixes, staged_root):
 
 
 def _fixture_config(staged, source=None, **kwargs):
+    from .runner import RunConfig
+
     fixture = Path(staged) / FIXTURE_REL
     if source is not None and "resolution_paths" not in kwargs:
         # The repository's committed path inventory: reference resolution is
         # repository-wide even though the run target is a staged subdomain.
         kwargs["resolution_paths"] = source.ls(".")
-    return runner.RunConfig(
+    return RunConfig(
         inventory_fixture=str(fixture) if fixture.is_file() else None,
         **kwargs)
 
@@ -139,6 +147,8 @@ def _fixture_config(staged, source=None, **kwargs):
 def _emit(items, findings_path):
     """Serialize canonically, persist, and gate: error -> 1 (fail closed);
     deferred reports and never fails (RD-08)."""
+    from . import findings
+
     blob = findings.serialize(items)
     if findings_path:
         Path(findings_path).parent.mkdir(parents=True, exist_ok=True)
@@ -180,6 +190,8 @@ def cmd_export(args):
 def cmd_validate(args):
     """The `validate` check: the validation stage over the staged governed
     domain, with the committed inventory fixture as its explicit input."""
+    from . import runner
+
     source = _source(args)
     with tempfile.TemporaryDirectory() as tmp:
         staged = _stage(source, VALIDATE_PREFIXES, tmp)
@@ -192,6 +204,9 @@ def cmd_plan_preview(args):
     """The `plan-preview` check: the T20 #22 d2 classification arms over
     the PR's changed paths plus the sanitized, snapshot-blind,
     never-apply-eligible preview rendering (T15 #10 d15)."""
+    from . import runner
+    from .effective_access import render_preview
+
     changed = [
         line.strip()
         for line in Path(args.changed_paths).read_text(
@@ -214,14 +229,18 @@ def cmd_generated_check(args):
     regenerate the governance set and both catalogs from committed bytes,
     and run the generated-ci stage over the committed generated artifacts
     with the regeneration as its explicit run input."""
+    import yaml
+
+    from . import catalog_generator, governance_generator, runner
+
     source = _source(args)
     regenerated = governance_generator.generate(source)
-    handles_doc = yaml.safe_load(
-        source.read(governance_generator.HANDLES_PATH).decode("utf-8"))
-    committed_codeowners = source.read(governance_generator.CODEOWNERS_PATH)
+    handles_doc = yaml.safe_load(source.read(HANDLES_REL).decode("utf-8"))
+    committed_codeowners = source.read(CODEOWNERS_REL)
     with tempfile.TemporaryDirectory() as tmp:
         staged = _stage(source, GENERATED_PREFIXES, tmp)
-        config = runner.RunConfig(
+        config = _fixture_config(
+            staged,
             regenerated=regenerated,
             handle_mapping=(handles_doc or {}).get("handles"),
             codeowners=(committed_codeowners or b"").decode("utf-8"),
@@ -250,6 +269,9 @@ def cmd_lab_plan(args):
     digest-bound effective-access summary (one generator, two renderings)
     and the T06 #8 d4 authorization-binding record. Fail closed: an error
     finding leaves no summary and no binding."""
+    from . import runner
+    from .effective_access import PINS, render_summary, summary_digest
+
     if args.target:
         # Specimen mode (tests): the explicit target tree is both the run
         # target and the resolution domain.
@@ -304,6 +326,8 @@ def cmd_verify_binding(args):
     any change invalidates the authorization; one binding, one plan, one
     attempt. Expiry compares ISO-8601 UTC instants (the pipeline supplies
     the clock; this validator core holds none)."""
+    from .effective_access import summary_digest
+
     binding = json.loads(Path(args.binding).read_text(encoding="utf-8"))
     results = []
 

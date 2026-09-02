@@ -44,6 +44,17 @@ def build_export(export_dir, tree_src):
     return export
 
 
+class ContractConstants(unittest.TestCase):
+    def test_wiring_literals_equal_the_owning_constants(self) -> None:
+        # ci keeps import-free literals so `export` stays stdlib-only on
+        # the transport runner; they must track the owning modules exactly.
+        from validator import governance_generator as gen
+
+        self.assertEqual(gen.FIXTURE_PATH, ci.FIXTURE_REL)
+        self.assertEqual(gen.CODEOWNERS_PATH, ci.CODEOWNERS_REL)
+        self.assertEqual(gen.HANDLES_PATH, ci.HANDLES_REL)
+
+
 class ExportedSourcesContract(unittest.TestCase):
     def setUp(self) -> None:
         self.tmp = tempfile.TemporaryDirectory()
