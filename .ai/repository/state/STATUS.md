@@ -76,17 +76,32 @@ only through Repository Gates. Not an architecture document.
   committed lab inventory fixture (`governance/inventory/lab-inventory-fixture.yml`,
   content fixed to the ratified T16 #11 d7 five-entry set) travels with
   R4 #29 as a recorded prerequisite input (#29 grooming comment).
+- **R4 complete:** R4 #29 (CI workflows — §10 row 11, with the recorded
+  lab-inventory-fixture prerequisite landed first) passed the full verify chain
+  (S8 PASS; S9 evidence on the ticket; S10 three-axis PASS; S11 PASS with no
+  conditions) and merged at ⟦G-Merge⟧ via PR #39, merge commit
+  `213da223281688d725a5f45d6f5e29a89d003ac6`; #29 is closed as completed. The
+  first live PR runs of the authored `validate` and `plan-preview` checks both
+  passed on PR #39 (run links in the #29 resolution comment); the checks are not
+  yet server-side-required — that activation is R6/14a. IR-R4-1…4 from the
+  S10/S11 records remain non-blocking implementation recommendations only — no
+  owner assigned — for their natural owners (the next authorized `validator.ci`
+  touch; the R6 #31 activation pass). Nothing in R4 contacted AWS, executed
+  Terraform, changed GitHub configuration, or advanced any empirical condition.
 - **Current Objective:** run Skill Step S7 (`implement`) against the next frontier
-  ticket R4 (#29, CI workflows — §10 row 11) with fresh context, through the
-  decision-gated lifecycle S7–S11 (Standards + Spec + Conformance axes and
-  the independent Quality Gate) to ⟦G-Merge⟧. R5 #30 is also unblocked; R4 #29 is
-  next in the amendment/map order and neither ticket is claimed.
-- **Next Milestone:** R4 verified and merged at ⟦G-Merge⟧; the frontier then advances
-  per the amendment's native edges (R6 #31 unblocks behind R4). R6, R7, and R8 remain
-  separately authorized beyond ticket creation; no Terraform apply before the R6/14a
-  control set is active. The three empirical conditions (provider execution; `forget`
-  representation; import redaction) remain open and gate what their records say they
-  gate.
+  ticket R5 (#30, Terraform roots and resource model — §10 row 13) with fresh
+  context, through the decision-gated lifecycle S7–S11 (Standards + Spec +
+  Conformance axes and the independent Quality Gate) to ⟦G-Merge⟧. R6 #31 is now
+  also unblocked behind R4 but remains separately authorized beyond ticket
+  creation; R5 #30 is next in the amendment/map order and neither ticket is
+  claimed.
+- **Next Milestone:** R5 verified and merged at ⟦G-Merge⟧; the frontier then advances
+  per the amendment's native edges (R7 #32 unblocks behind R5). A post-R5
+  checkpoint amendment has been proposed by the owner and remains a proposal
+  only, not accepted state. R6, R7, and R8 remain separately authorized beyond
+  ticket creation; no Terraform apply before the R6/14a control set is active.
+  The three empirical conditions (provider execution; `forget` representation;
+  import redaction) remain open and gate what their records say they gate.
 
 ## Repository Version sentinel
 
