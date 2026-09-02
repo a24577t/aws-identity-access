@@ -35,7 +35,14 @@ only through Repository Gates. Not an architecture document.
   — ratified through the Pre-Baseline E1 route (Skill Execution Map, Excursion
   E1) — fixes the executable field table of the change-declaration records
   (executable renderings of T06 #8 decision 5; plan-effect classes per T20 #22
-  decision 5), the cited records prevailing on any divergence. The Architecture
+  decision 5), the cited records prevailing on any divergence; and the
+  [root-control-path classification amendment](../../../docs/specifications/slice-a-root-control-path-classification-amendment.md)
+  — ratified through the same Pre-Baseline E1 route — closes the single
+  T20 #22 decision-2 omission for the four T06-governed root control files
+  (`.gitignore`, `.gitattributes`, `LICENSE`,
+  `aws-identity-access-poc-prompt.md` → `platform-change`, exact paths, no
+  wildcard; every other row and the fail-closed uncovered-path rule
+  unchanged). The Architecture
   Baseline, Baseline Version, and Architecture Version remain `none`.
 
 ## Objective
@@ -88,13 +95,19 @@ only through Repository Gates. Not an architecture document.
   owner assigned — for their natural owners (the next authorized `validator.ci`
   touch; the R6 #31 activation pass). Nothing in R4 contacted AWS, executed
   Terraform, changed GitHub configuration, or advanced any empirical condition.
-- **Current Objective:** run Skill Step S7 (`implement`) against the next frontier
-  ticket R5 (#30, Terraform roots and resource model — §10 row 13) with fresh
-  context, through the decision-gated lifecycle S7–S11 (Standards + Spec +
-  Conformance axes and the independent Quality Gate) to ⟦G-Merge⟧. R6 #31 is now
-  also unblocked behind R4 but remains separately authorized beyond ticket
-  creation; R5 #30 is next in the amendment/map order and neither ticket is
-  claimed.
+- **Current Objective:** R5 #30 (Terraform roots and resource model — §10
+  row 13) remains the current work item, **halted at excursion E1** pending
+  the root-control-path classification amendment. Its S7–S11 chain is
+  complete on `ticket/r5-terraform-roots-and-resource-model` @ `680e5151…`
+  (S7 record, S9 closure, S10 PASS, S11 PASS WITH CONDITIONS — C1 traveling
+  to R7 #32 — on the ticket) and PR #40 is open; the first live
+  `plan-preview` run failed closed with `CLS-UNCOVERED-PATH` on
+  `.gitignore`, exposing the accepted-record omission the amendment closes.
+  Resume after acceptance, per the amendment's §4 route: merge `main` into
+  the R5 branch, apply the smallest classifier/test correction (exact
+  paths, red-first), delta-revalidate with S8–S11 addenda on the new head,
+  then ⟦G-Merge⟧ for PR #40. R6 #31 remains unblocked behind R4 but
+  separately authorized beyond ticket creation.
 - **Next Milestone:** R5 verified and merged at ⟦G-Merge⟧; the frontier then advances
   per the amendment's native edges (R7 #32 unblocks behind R5). A post-R5
   checkpoint amendment has been proposed by the owner and remains a proposal
