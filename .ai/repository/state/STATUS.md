@@ -42,7 +42,15 @@ only through Repository Gates. Not an architecture document.
   (`.gitignore`, `.gitattributes`, `LICENSE`,
   `aws-identity-access-poc-prompt.md` → `platform-change`, exact paths, no
   wildcard; every other row and the fail-closed uncovered-path rule
-  unchanged). The Architecture
+  unchanged); and the
+  [portable-development foundation checkpoint amendment](../../../docs/specifications/portable-development-foundation-checkpoint-amendment.md)
+  — ratified at a narrow Pre-Baseline ⟦G-Accept⟧ — fixes R1–R5 as this
+  repository's portable source-code foundation checkpoint, transfers the
+  execution destination of R6–R8 (items 14a/14b/15; contracts, C1, and the
+  separate-authorization rules preserved) to the destination company
+  environment, and routes the proposed `v0.1.0-foundation.1` checkpoint
+  version through the later phase/release gate (no tag or release exists
+  yet). The Architecture
   Baseline, Baseline Version, and Architecture Version remain `none`.
 
 ## Objective
@@ -115,18 +123,35 @@ only through Repository Gates. Not an architecture document.
   non-blocking recommendations only — no owner assigned. Zero Terraform
   execution, zero AWS contact, zero GitHub-configuration change; no lab
   verification or production readiness is claimed.
-- **Current Objective:** preparation and owner review of the proposed narrow
-  post-R5 portable-development checkpoint amendment before either R6 #31 or
-  R7 #32 begins. The checkpoint remains a proposal only: it does not yet
-  alter accepted architecture, ticket state, or any completion claim.
-- **Next Milestone:** the checkpoint proposal decided at its own gate, then
-  the live frontier — R6 #31 (repository-side control activation) and R7 #32
-  (AWS-side OIDC/bootstrap), both open, unassigned, and unblocked — each
-  requiring its own separate authorization beyond ticket creation; R8 #33
-  remains blocked by open #32. No Terraform apply before the R6/14a control
-  set is active. The three empirical conditions (provider execution; `forget`
-  representation; import redaction) remain open and gate what their records
-  say they gate.
+- **Portable foundation checkpoint:** the accepted
+  [portable-development foundation checkpoint amendment](../../../docs/specifications/portable-development-foundation-checkpoint-amendment.md)
+  fixes R1–R5 — the merged products of PRs #35, #37, #38, #39, and #40 — as
+  this repository's portable source-code foundation. This repository will
+  not execute R6, R7, or R8: their contracts transfer intact to the
+  destination company environment (amendment §3; each remains separately
+  authorized there, and every external GitHub/AWS condition must be observed
+  anew in the destination — external-state evidence never transfers as fresh
+  evidence). No credential, private key, live identifier, or
+  company-confidential value transfers through this repository. The
+  repository claims no GitHub control activation, no AWS deployment, no lab
+  verification, and no production readiness.
+- **Current Objective:** execute the amendment's post-acceptance sequence,
+  in order: (1) disposition R6 #31, R7 #32, and R8 #33 exactly as amendment
+  §6 directs — transferred/deferred, closed as not planned, never as
+  completed; (2) run the applicable checkpoint phase/release gate over the
+  checkpoint scope; (3) only if that gate passes, publish
+  `v0.1.0-foundation.1` atomically (annotated tag + GitHub Release + STATUS
+  reconciliation, operator-guide S7/S8). Neither the tag nor the release
+  exists yet. Pending their §6 disposition, #31–#33 remain open with their
+  recorded dependency edges as history.
+- **Next Milestone:** `v0.1.0-foundation.1` published through the release
+  gate; the destination company repository then begins at its own first
+  product objective — the IAM PR MVP (amendment §8; fleet roles and
+  StackSets remain deferred beyond it). C1 travels with the destination
+  R7-equivalent work; IR-R5-2 and IR-R4-1…4 remain non-blocking
+  recommendations only. The three empirical conditions (provider execution;
+  `forget` representation; import redaction) remain open and gate what their
+  records say they gate.
 
 ## Repository Version sentinel
 
