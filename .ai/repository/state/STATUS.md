@@ -63,13 +63,26 @@ only through Repository Gates. Not an architecture document.
   `src/validator` work) and C2 (document the ADM rule-2/4 condition-gating
   boundary; any behavior change routes through E1). The recorded allocation
   note for `ADO-PHASE` and the CLS/GEN fixtures also travels with R3.
+- **R3 complete:** R3 #28 (Plan analysis and generated governance — §10 rows
+  9, 10, 12, with R2's C1/C2 discharged and the `ADO-PHASE`/fixture
+  allocation reconciled) passed the full verify chain (S8 PASS; S9 evidence
+  on the ticket, including the honestly recorded row-12 chronology
+  deviation; S10 three-axis PASS; S11 PASS with no conditions) and merged at
+  ⟦G-Merge⟧ via PR #38, merge commit
+  `0bd35caaaebf7c7dd983a1f37d449d8491ea952f`; #28 is closed as completed.
+  IR-1/IR-2 from the S10/S11 records (private-name promotions in
+  `src/validator`) remain non-blocking implementation recommendations only —
+  no owner assigned — for the next authorized `src/validator` touch. The
+  committed lab inventory fixture (`governance/inventory/lab-inventory-fixture.yml`,
+  content fixed to the ratified T16 #11 d7 five-entry set) travels with
+  R4 #29 as a recorded prerequisite input (#29 grooming comment).
 - **Current Objective:** run Skill Step S7 (`implement`) against the next frontier
-  ticket R3 (#28, Plan analysis and generated governance — §10 rows 9, 10, 12) with fresh context,
-  through the decision-gated lifecycle S7–S11 (Standards + Spec + Conformance axes and
-  the independent Quality Gate) to ⟦G-Merge⟧. R5 #30 is also unblocked; R3 #28 is
+  ticket R4 (#29, CI workflows — §10 row 11) with fresh context, through the
+  decision-gated lifecycle S7–S11 (Standards + Spec + Conformance axes and
+  the independent Quality Gate) to ⟦G-Merge⟧. R5 #30 is also unblocked; R4 #29 is
   next in the amendment/map order and neither ticket is claimed.
-- **Next Milestone:** R3 verified and merged at ⟦G-Merge⟧; the frontier then advances
-  per the amendment's native edges (R4 unblocks). R6, R7, and R8 remain
+- **Next Milestone:** R4 verified and merged at ⟦G-Merge⟧; the frontier then advances
+  per the amendment's native edges (R6 #31 unblocks behind R4). R6, R7, and R8 remain
   separately authorized beyond ticket creation; no Terraform apply before the R6/14a
   control set is active. The three empirical conditions (provider execution; `forget`
   representation; import redaction) remain open and gate what their records say they
