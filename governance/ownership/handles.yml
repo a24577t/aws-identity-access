@@ -1,0 +1,15 @@
+# Principal-to-GitHub-handle implementation mapping — the binding T06 #8
+# decision 2 defers under document 10 (no provider handles ever live in the
+# principal records themselves). A strictest-set control surface (T06 #8
+# decision 3): changes carry identity-platform + security + architecture
+# review. Handles are GitHub identities; no AWS identifier ever appears
+# here. In the single-collaborator lab every logical principal is satisfied
+# by the one physical identity — enforcement status for multi-class
+# independence stays derived as unenforced under the recorded T15 #10 d15
+# procedural interval, never authored (T06 #8 decision 2).
+
+handles:
+  architecture: "@a24577t"
+  deployment-authority: "@a24577t"
+  identity-platform: "@a24577t"
+  security: "@a24577t"
