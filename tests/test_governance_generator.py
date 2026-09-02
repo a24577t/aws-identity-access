@@ -192,5 +192,41 @@ class MaterializedTree(GovTreeCase):
         )
 
 
+import shutil  # noqa: E402
+
+HAS_GIT = shutil.which("git") is not None
+
+
+@unittest.skipUnless(HAS_GIT, "committed generation reads HEAD blobs and "
+                              "last-touch revisions through git "
+                              "(byte-identity amendment)")
+class CommittedGeneration(unittest.TestCase):
+    """Row-12 acceptance over the real committed artifacts: regeneration
+    yields identical bytes; nothing was hand-edited; the committed set
+    passes the repository's own GEN arms."""
+
+    def outputs(self):
+        return gen.generate(gen.GitSources())
+
+    def test_committed_artifacts_match_regeneration(self) -> None:
+        for rel, blob in sorted(self.outputs().items()):
+            with self.subTest(file=rel):
+                committed = REPO / rel
+                self.assertTrue(committed.is_file(), f"{rel} not committed")
+                self.assertEqual(blob, committed.read_bytes())
+
+    def test_generation_from_head_is_deterministic(self) -> None:
+        self.assertEqual(self.outputs(), self.outputs())
+
+    def test_committed_set_passes_the_gen_arms(self) -> None:
+        ctx = runner.Context("validation", REPO, runner.RunConfig())
+        from validator import checks_gen
+
+        checks_gen.check_generated(ctx)
+        self.assertEqual(
+            [], [f"{f.code} {f.file_path} {f.message}" for f in ctx.findings]
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

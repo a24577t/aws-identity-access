@@ -1,0 +1,111 @@
+- target:
+    path: .github/CODEOWNERS
+    sha256: "5aeb3e9c22c994abf208e3891f7aa78ecda97b10589624a4463b013568a76a11"
+  generator:
+    path: src/validator/governance_generator.py
+    version: "1"
+  sources:
+    - path: governance/ownership/handles.yml
+      revision: "4d983cf8575f48c3b74fc9f65b942baef1ede241"
+    - path: governance/ownership/principals/architecture.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/principals/deployment-authority.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/principals/identity-platform.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/principals/security.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/review-classes/architecture.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/review-classes/deployment-authority.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/review-classes/identity-platform.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/review-classes/security.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/routing.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+- target:
+    path: docs/generated/enforcement-evidence.md
+    sha256: "dff2305add92f2022d2bd3a8df85992c6ec4edba0ce8d6bbd3073f66d31b2660"
+  generator:
+    path: src/validator/governance_generator.py
+    version: "1"
+  sources:
+    - path: governance/ownership/handles.yml
+      revision: "4d983cf8575f48c3b74fc9f65b942baef1ede241"
+    - path: governance/ownership/principals/architecture.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/principals/deployment-authority.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/principals/identity-platform.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/principals/security.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/review-classes/architecture.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/review-classes/deployment-authority.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/review-classes/identity-platform.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/review-classes/security.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+    - path: governance/ownership/routing.yml
+      revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
+- target:
+    path: docs/generated/views/account.md
+    sha256: "f614dca0b212144d4959724fb5d1c79937c7acdbb37a684539881a5e7f24e3ae"
+  generator:
+    path: src/validator/governance_generator.py
+    version: "1"
+  sources:
+    - path: access/identity-center/account-assignments/lab-requested/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/account-assignments/lab-workload-a/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/account-assignments/lab-workload-b/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/groups/lab-readers.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/permission-sets/inventory-reader.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/permission-sets/read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+- target:
+    path: docs/generated/views/principal.md
+    sha256: "79cdf4014dbce767be438126b018eeee7f53df941378be90440c781dcb3fb828"
+  generator:
+    path: src/validator/governance_generator.py
+    version: "1"
+  sources:
+    - path: access/identity-center/account-assignments/lab-requested/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/account-assignments/lab-workload-a/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/account-assignments/lab-workload-b/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/groups/lab-readers.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/permission-sets/inventory-reader.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/permission-sets/read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+- target:
+    path: docs/generated/views/requester.md
+    sha256: "0266c595f6d244e547bf39fafd6ff032252e90cbe22442d124e8c34a61e479d9"
+  generator:
+    path: src/validator/governance_generator.py
+    version: "1"
+  sources:
+    - path: access/identity-center/account-assignments/lab-requested/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/account-assignments/lab-workload-a/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/account-assignments/lab-workload-b/lab-readers--read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/groups/lab-readers.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/permission-sets/inventory-reader.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: access/identity-center/permission-sets/read-only.yml
+      revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
