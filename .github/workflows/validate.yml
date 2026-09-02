@@ -1,0 +1,74 @@
+# R4 #29 row 11 - the `validate` required status check (T15 #10 d15;
+# spec 3 W6, 8.1, 8.2). Orchestration only: validation behavior lives in
+# src/validator and is invoked through its public seams (validator.ci).
+#
+# Pins (spec 8.1): every action by its full 40-hex SHA (tag as trailing
+# comment; adding an action is a platform-change PR); toolchain execution
+# happens inside the pinned validator container; the ubuntu-24.04 runner is
+# transport only and its actual image identity is recorded in run evidence.
+# Reproducibility (spec 8.2): identical commands locally and in CI, inside
+# the pinned container; the only network installation is the hash-locked
+# wheel download; validation itself runs with --network none (offline,
+# hermetic - T22 #21 d4). Server-side activation of this check as a
+# required status check is R6 #31, separately authorized.
+name: validate
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Validator execution container (spec 8.1) - immutable multi-arch digest.
+  CONTAINER: python:3.12.7-slim@sha256:60d9996b6a8a3689d36db740b49f4327be3be09a21122bd02fb8895abb38b50d
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Record the actual runner-image identity (spec 8.1 run evidence)
+        run: |
+          mkdir -p "$RUNNER_TEMP/evidence"
+          echo "runner-image=${ImageOS:-unknown}-${ImageVersion:-unknown}" |
+            tee "$RUNNER_TEMP/evidence/runner-identity.txt"
+
+      - name: Check out the reviewed commit (full history for last-touch revisions)
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+
+      - name: Export committed blobs and revisions (transport - git lives on the runner)
+        run: python3 -m validator.ci export --out "$RUNNER_TEMP/export"
+        env:
+          PYTHONPATH: src
+
+      - name: Download the hash-locked wheel set (the one pinned network step, spec 8.2)
+        run: >-
+          docker run --rm -v "$GITHUB_WORKSPACE:/work" -v "$RUNNER_TEMP:/ci"
+          -w /work "$CONTAINER"
+          pip download --require-hashes -r src/requirements.txt -d /ci/wheels
+
+      - name: Validate hermetically inside the pinned container (no network)
+        run: >-
+          docker run --rm --network none -v "$GITHUB_WORKSPACE:/work"
+          -v "$RUNNER_TEMP:/ci" -w /work -e PYTHONPATH=/work/src "$CONTAINER"
+          sh -ec 'pip install --require-hashes --no-index --find-links /ci/wheels
+          -r src/requirements.txt &&
+          python -m unittest discover -s tests &&
+          python -m validator.ci validate
+          --export /ci/export --findings /ci/evidence/validate-findings.json &&
+          python -m validator.ci generated-check
+          --export /ci/export --findings /ci/evidence/generated-findings.json'
+
+      - name: Publish validation evidence (findings and identity only)
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: validate-evidence
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: ignore

@@ -1,10 +1,12 @@
 - target:
     path: .github/CODEOWNERS
-    sha256: "5aeb3e9c22c994abf208e3891f7aa78ecda97b10589624a4463b013568a76a11"
+    sha256: "f6c35e9f35a378da25a83c7db5294a3a03f1cf9d35d60ca0981b19ffae06e6e9"
   generator:
     path: src/validator/governance_generator.py
     version: "1"
   sources:
+    - path: governance/inventory/lab-inventory-fixture.yml
+      revision: "8dceaa192b73e9948e795be8a28dcafa6720dbd1"
     - path: governance/ownership/handles.yml
       revision: "4d983cf8575f48c3b74fc9f65b942baef1ede241"
     - path: governance/ownership/principals/architecture.yml
@@ -54,7 +56,7 @@
       revision: "b23d2b9c363e72316d2dc5602cc2cdc8a3623c74"
 - target:
     path: docs/generated/views/account.md
-    sha256: "f614dca0b212144d4959724fb5d1c79937c7acdbb37a684539881a5e7f24e3ae"
+    sha256: "2630eac8dcf04e1664bef33a43759225fe3fb4372cb3bb3847eecbe5f59f9509"
   generator:
     path: src/validator/governance_generator.py
     version: "1"
@@ -71,9 +73,11 @@
       revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
     - path: access/identity-center/permission-sets/read-only.yml
       revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: governance/inventory/lab-inventory-fixture.yml
+      revision: "8dceaa192b73e9948e795be8a28dcafa6720dbd1"
 - target:
     path: docs/generated/views/principal.md
-    sha256: "79cdf4014dbce767be438126b018eeee7f53df941378be90440c781dcb3fb828"
+    sha256: "f97185d69976564aa57d02801355a8f5c7b8ffb767de97ebacbf6faa6fb6474c"
   generator:
     path: src/validator/governance_generator.py
     version: "1"
@@ -90,9 +94,11 @@
       revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
     - path: access/identity-center/permission-sets/read-only.yml
       revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: governance/inventory/lab-inventory-fixture.yml
+      revision: "8dceaa192b73e9948e795be8a28dcafa6720dbd1"
 - target:
     path: docs/generated/views/requester.md
-    sha256: "0266c595f6d244e547bf39fafd6ff032252e90cbe22442d124e8c34a61e479d9"
+    sha256: "e913ae7600f391de3399fb6e7ca791035299684d46691abf94c801f5b36f19be"
   generator:
     path: src/validator/governance_generator.py
     version: "1"
@@ -109,3 +115,5 @@
       revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
     - path: access/identity-center/permission-sets/read-only.yml
       revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+    - path: governance/inventory/lab-inventory-fixture.yml
+      revision: "8dceaa192b73e9948e795be8a28dcafa6720dbd1"

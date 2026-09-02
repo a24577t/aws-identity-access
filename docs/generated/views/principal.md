@@ -17,6 +17,8 @@ sources:
     revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
   - path: access/identity-center/permission-sets/read-only.yml
     revision: "cef077592b396a4467d8437aeee301f1f321a2b8"
+  - path: governance/inventory/lab-inventory-fixture.yml
+    revision: "8dceaa192b73e9948e795be8a28dcafa6720dbd1"
 target:
   path: docs/generated/views/principal.md
 ---

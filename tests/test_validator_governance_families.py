@@ -283,6 +283,30 @@ class DocFamily(GovTreeCase):
         )
         self.assertCodes(["DOC-INFORMATIVE"])
 
+    def test_doc_resolution_uses_the_supplied_repository_inventory(self) -> None:
+        # T23 #23 d2 resolves derives_from to a *repository* path. When the
+        # run target is a staged subdomain of the repository, the R4 #29 CI
+        # wiring supplies the committed path inventory as an explicit run
+        # input; entries absent from the supplied inventory stay
+        # unresolvable (fail closed). Absent input keeps the target tree as
+        # the resolution domain (all prior behavior unchanged).
+        self.write(
+            "docs/guides/guide.md",
+            "---\nauthority: informative\nderives_from:\n"
+            "  - docs/wayfinding/map-1/03-deployment-in-the-poc.md\n"
+            "  - ADR-0002\n---\n\n# G\n",
+        )
+        self.assertCodes(
+            [],
+            resolution_paths=[
+                "docs/wayfinding/map-1/03-deployment-in-the-poc.md",
+                "docs/adr/0002-no-silent-account-expansion.md",
+            ],
+        )
+        self.assertCodes(
+            ["DOC-INFORMATIVE", "DOC-INFORMATIVE"], resolution_paths=[]
+        )
+
     def test_doc_informative_resolvable_sources_pass(self) -> None:
         self.write("docs/architecture/overview.md", NORMATIVE_DOC)
         self.write(

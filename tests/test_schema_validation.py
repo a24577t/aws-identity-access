@@ -37,6 +37,7 @@ GOVERNED = {
     "governance/ownership/review-classes/architecture.yml": "governance/review-class.schema.json",
     "governance/ownership/review-classes/deployment-authority.yml": "governance/review-class.schema.json",
     "governance/ownership/routing.yml": "governance/routing-table.schema.json",
+    "governance/inventory/lab-inventory-fixture.yml": "inventory/lab-inventory-fixture.schema.json",
 }
 
 

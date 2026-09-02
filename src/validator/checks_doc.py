@@ -34,16 +34,21 @@ def _frontmatter(text):
 
 def _resolvable(entry, ctx):
     """derives_from entries resolve to a repository path, a domain ADR
-    identifier, or an immutable pinned platform identifier/URL (T23 d2)."""
+    identifier, or an immutable pinned platform identifier/URL (T23 d2).
+    The resolution domain is the repository: a staged-subdomain run supplies
+    the committed path inventory as RunConfig.resolution_paths (R4 #29 CI
+    wiring); absent, the target tree is the domain."""
     if not isinstance(entry, str) or not entry:
         return False
     if _URL_RE.match(entry):
         return True
+    paths = ctx.config.resolution_paths
+    universe = ctx.files() if paths is None else paths
     match = _ADR_ID_RE.match(entry)
     if match:
         prefix = f"docs/adr/{match.group(1)}-"
-        return any(rel.startswith(prefix) for rel in ctx.files())
-    return entry in ctx.files()
+        return any(rel.startswith(prefix) for rel in universe)
+    return entry in universe
 
 
 def check_docs(ctx):

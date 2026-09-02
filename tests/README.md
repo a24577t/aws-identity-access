@@ -72,6 +72,22 @@ hash-locked in `src/requirements.txt`): `python -m unittest discover -s tests`.
   detection at its canonical validation layer (T19 #14 d2 —
   adoption-shaped configuration outside an authorized rehearsal phase).
 
+- `test_ci_wiring.py` — R4 #29 row 11: the CI wiring seam
+  (`validator.ci`) — committed-byte export/staging transport, the
+  `validate` and `plan-preview` gates (error fails closed; the deferral
+  never fails — RD-08), the generated-ci drift run, the lab-plan
+  summary/binding derivation, and the fail-closed `verify-binding`
+  consumption rule; includes the executable real-tree check (the
+  committed governed domain at HEAD validates with exactly the one
+  recorded deferral; the git-dependent sweeps skip inside the pinned
+  container).
+- `test_ci_workflows.py` — R4 #29 row 11: static verification of the
+  committed workflow files — every action pinned by its full 40-hex
+  §8.1 SHA with the tag comment, the pinned container as the only
+  toolchain image, the T15 #10 d15 check names/shapes/orderings, the
+  secret name-boundary, the leak-shape scan over workflow bytes, and
+  the §8.2 identical-commands rule.
+
 ## Fixture tree (T14 #19 d6; spec §3 W4)
 
 `tests/fixtures/valid/**` mirrors the `access/` and `governance/` layouts
