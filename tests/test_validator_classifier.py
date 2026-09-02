@@ -139,6 +139,29 @@ class LayerOneTable(unittest.TestCase):
         self.assertEqual("documentation", c("README.md"))
         self.assertIsNone(c("mystery/file.txt"))
 
+    def test_root_control_paths_per_the_classification_amendment(self) -> None:
+        # The accepted root-control-path classification amendment: exactly
+        # these four T06 #8 d3-governed root files classify platform-change,
+        # by exact path - never a root wildcard. Any other root path stays
+        # fail-closed (CLS-UNCOVERED-PATH), and the pre-existing exact and
+        # prefix rows are unchanged.
+        c = classifier.path_class
+        for path in (".gitignore", ".gitattributes", "LICENSE",
+                     "aws-identity-access-poc-prompt.md"):
+            self.assertEqual("platform-change", c(path), path)
+        for uncovered in ("NOTICE", ".editorconfig", "LICENSE.txt",
+                          "gitignore", "some.gitignore"):
+            self.assertIsNone(c(uncovered), uncovered)
+        classes, uncovered = classifier.classify_paths(
+            [".gitignore", "NOTICE"])
+        self.assertEqual({"platform-change"}, classes)
+        self.assertEqual(["NOTICE"], uncovered)
+        # Pre-existing behavior unchanged.
+        self.assertEqual("platform-change", c("CLAUDE.md"))
+        self.assertEqual("documentation", c("README.md"))
+        self.assertEqual("documentation", c("CONTEXT.md"))
+        self.assertEqual("access-grant", c(GRANT_PATH))
+
 
 class PathArms(ClassifierCase):
     def test_uncovered_path_fires_at_validation(self) -> None:

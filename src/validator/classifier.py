@@ -73,6 +73,13 @@ _EXACT_PATHS = {
     "CLAUDE.md": "platform-change",
     "README.md": "documentation",
     "CONTEXT.md": "documentation",
+    # The accepted root-control-path classification amendment: exactly
+    # these four T06 #8 d3-governed root control files, by exact path -
+    # never a root wildcard; any other root path stays fail-closed.
+    ".gitignore": "platform-change",
+    ".gitattributes": "platform-change",
+    "LICENSE": "platform-change",
+    "aws-identity-access-poc-prompt.md": "platform-change",
 }
 
 # Ordered most-specific-first; each changed file takes its first match.
