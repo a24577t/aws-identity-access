@@ -8,7 +8,7 @@ only through Repository Gates. Not an architecture document.
 
 ## Repository
 
-- **Repository Version:** `none — untagged`
+- **Repository Version:** `v0.1.0-foundation.1`
 - **Completed Phase:** none
 - **Current Phase:** Pre-Baseline
 
@@ -150,26 +150,35 @@ only through Repository Gates. Not an architecture document.
   effort). R6–R8 were transferred/deferred, not completed; dependency edges
   remain as history; the three empirical conditions remain unresolved; no
   lab-verification or production-readiness claim exists.
-- **Current Objective:** run the applicable checkpoint phase/release gate
-  (operator-guide S4/S5 as applicable, then S7) over the R1–R5 checkpoint
-  scope; only if that gate passes, publish `v0.1.0-foundation.1` atomically
-  (annotated tag + GitHub Release + STATUS reconciliation, operator-guide
-  S8). The version remains proposed and unpublished: neither the tag nor the
-  release exists yet.
-- **Next Milestone:** `v0.1.0-foundation.1` published through the release
-  gate; the destination company repository then begins at its own first
-  product objective — the IAM PR MVP (amendment §8; fleet roles and
-  StackSets remain deferred beyond it). C1 travels with the destination
-  R7-equivalent work; IR-R5-2 and IR-R4-1…4 remain non-blocking
+- **Checkpoint published:** the portable-development-foundation checkpoint
+  is published as Repository Version `v0.1.0-foundation.1` — annotated tag
+  and GitHub Release (prerelease) on this STATUS reconciliation commit —
+  after the checkpoint gate's PASS verdict
+  (<https://github.com/a24577t/aws-identity-access/pull/42#issuecomment-5518243215>;
+  operator-guide S7 run as an implementation-milestone release, S4/S5 not
+  applicable). R1–R5 are the bounded portable foundation; R6–R8 are
+  transferred/deferred, not completed (§6 disposition comments above); C1
+  remains a destination-environment obligation; the three empirical
+  conditions remain unresolved; no personal-lab completion,
+  company-environment verification, AWS execution, lab verification, or
+  production readiness is claimed.
+- **Current Objective:** clone/fork the published checkpoint into the
+  company-controlled repository and re-establish destination-specific
+  authority, inventory, GitHub controls, OIDC/AWS bindings, secrets, and
+  evidence anew — per amendment §§3 and 5 — before implementing the IAM PR
+  MVP (amendment §8).
+- **Next Milestone:** the destination company repository's IAM PR MVP
+  (amendment §8; fleet roles and StackSets remain deferred beyond it),
+  begun only after every destination binding is re-established and verified
+  in that environment. IR-R5-2 and IR-R4-1…4 remain non-blocking
   recommendations only. The three empirical conditions (provider execution;
   `forget` representation; import redaction) remain open and gate what their
   records say they gate.
 
 ## Repository Version sentinel
 
-`none — untagged` is the Repository Version recorded while the repository has never
-produced a Project Release. It corresponds to the **absence of any Git tag**: session
-bootstrap's Repository-Version check (Status Artifact version = latest Git tag)
-reconciles because both sides are "none". The sentinel is replaced by the first released
-Semantic Version when Project Release (operator-guide S7/S8) reconciles this artifact
-together with the tag and release metadata.
+The `none — untagged` sentinel was retired by the first Project Release:
+`v0.1.0-foundation.1` (operator-guide S7/S8) reconciled this artifact together
+with the annotated tag and the GitHub Release. Session bootstrap's
+Repository-Version check (Status Artifact version = latest Git tag) now
+reconciles on `v0.1.0-foundation.1` on both sides.
